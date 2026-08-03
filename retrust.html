@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReTrust 信任二手交易平台 | 讓閒置變現金，讓好物找新家</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Google Font: Noto Sans TC -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="CSS/retrust.css">
+</head>
+
+<body>
+
+    <!-- 1. Header & Navigation (固定頂部) -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <!-- Brand Logo -->
+            <a class="brand-logo me-3 me-lg-4" href="#">
+                <i class="fa-solid fa-arrows-rotate text-primary-orange"></i>
+                <span>ReTrust</span>
+            </a>
+
+            <!-- Search Bar (Desktop) -->
+            <div class="search-container me-auto d-none d-md-block">
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                <input type="text" class="form-control search-input" id="mainSearchInput"
+                    placeholder="搜尋寶物、品牌或賣家... (試試：iPhone 15, Switch, 日系包包)">
+
+                <!-- Autocomplete & Trending Tags Dropdown -->
+                <div class="search-suggestions" id="searchSuggestions">
+                    <div class="text-xs text-muted mb-2 font-weight-bold"><i
+                            class="fa-solid fa-fire text-danger me-1"></i>熱門關鍵字</div>
+                    <div class="d-flex flex-wrap gap-2 mb-3">
+                        <span class="badge bg-light text-dark rounded-pill py-2 px-3 search-tag"
+                            style="cursor:pointer">PS5 主機</span>
+                        <span class="badge bg-light text-dark rounded-pill py-2 px-3 search-tag"
+                            style="cursor:pointer">AirPods Pro</span>
+                        <span class="badge bg-light text-dark rounded-pill py-2 px-3 search-tag"
+                            style="cursor:pointer">二手精品女包</span>
+                        <span class="badge bg-light text-dark rounded-pill py-2 px-3 search-tag"
+                            style="cursor:pointer">露營休閒椅</span>
+                    </div>
+                    <div class="border-top pt-2">
+                        <div class="text-xs text-muted mb-1">最近搜尋</div>
+                        <div class="d-flex justify-content-between align-items-center py-1">
+                            <span class="text-sm text-secondary"><i class="fa-regular fa-clock me-2"></i>MacBook Pro
+                                M2</span>
+                            <i class="fa-solid fa-xmark text-muted text-xs" style="cursor:pointer"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Header Action Right Icons -->
+            <div class="d-flex align-items-center gap-3">
+                <a href="#categories" class="nav-link d-none d-lg-block font-weight-bold text-dark me-2">探索分類</a>
+
+                <!-- Cart Icon -->
+                <a href="#" class="position-relative text-dark fs-5 me-2" title="購物車">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                        style="font-size: 0.65rem;">
+                        3
+                    </span>
+                </a>
+
+                <!-- User Profile -->
+                <a href="#" class="text-dark fs-5 me-2" title="會員中心">
+                    <i class="fa-regular fa-user"></i>
+                </a>
+
+                <!-- Highlight CTA: Free Sell Button -->
+                <button class="btn btn-sell-now d-flex align-items-center gap-2" data-bs-toggle="modal"
+                    data-bs-target="#sellModal">
+                    <i class="fa-solid fa-circle-plus"></i>
+                    <span>免費上架</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 2. 主視覺 Hero Banner (雙向訴求) -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="row align-items-center g-4">
+                <!-- Left Column: Copywriting & Dual CTA -->
+                <div class="col-lg-6">
+                    <span class="badge bg-white text-danger px-3 py-2 rounded-pill shadow-sm mb-3 font-weight-bold">
+                        <i class="fa-solid fa-gift me-1"></i> 新戶首購享 0 元免運 ｜ 賣家上架抽 iPhone 15
+                    </span>
+                    <h1 class="hero-title mb-3">
+                        家裡的閒置寶物，<br>就是別人的<span>夢幻逸品</span>
+                    </h1>
+                    <p class="text-secondary fs-5 mb-4">
+                        ReTrust 全台最值得信賴的 C2C 二手平台。第三方安全託管、驗貨撥款、免手續費，30秒輕鬆拍照發布！
+                    </p>
+                    <div class="d-flex flex-wrap gap-3">
+                        <a href="#feed" class="btn btn-hero-primary d-flex align-items-center gap-2">
+                            <i class="fa-solid fa-compass"></i>
+                            <span>立即逛逛挖寶</span>
+                        </a>
+                        <button class="btn btn-hero-outline d-flex align-items-center gap-2" data-bs-toggle="modal"
+                            data-bs-target="#sellModal">
+                            <i class="fa-solid fa-camera"></i>
+                            <span>30 秒快速賣東西</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Right Column: Visual Image with Floating Card -->
+                <div class="col-lg-6">
+                    <div class="hero-img-box">
+                        <img src="https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=1000&q=80"
+                            alt="二手拍賣輕鬆上架" class="img-fluid w-100" style="max-height: 420px; object-fit: cover;">
+
+                        <!-- Floating Micro Interactive Card -->
+                        <div class="hero-badge-floating d-flex align-items-center gap-3">
+                            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80"
+                                class="rounded-circle" width="45" height="45" alt="賣家頭像">
+                            <div>
+                                <div class="fw-bold text-dark text-sm">小雅的閒置衣櫥</div>
+                                <div class="text-xs text-success"><i class="fa-solid fa-circle-check me-1"></i>剛售出
+                                    Vintage 古著包 ($2,400)</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. 信任與平台優勢標籤 (Trust & Value Proposition) -->
+            <div class="trust-bar mt-5">
+                <div class="row g-3">
+                    <div class="col-md-3 col-6">
+                        <div class="trust-item">
+                            <div class="trust-icon-wrapper">
+                                <i class="fa-solid fa-shield-halved"></i>
+                            </div>
+                            <div>
+                                <div class="fw-bold text-dark">第三方託管支付</div>
+                                <div class="text-xs text-muted">買家驗貨後才撥款</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-6">
+                        <div class="trust-item">
+                            <div class="trust-icon-wrapper">
+                                <i class="fa-solid fa-truck-fast"></i>
+                            </div>
+                            <div>
+                                <div class="fw-bold text-dark">四大超商取貨付款</div>
+                                <div class="text-xs text-muted">物流透明 即時追蹤</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-6">
+                        <div class="trust-item">
+                            <div class="trust-icon-wrapper">
+                                <i class="fa-solid fa-certificate"></i>
+                            </div>
+                            <div>
+                                <div class="fw-bold text-dark">正品切結與檢舉</div>
+                                <div class="text-xs text-muted">嚴格把關 買得安心</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-6">
+                        <div class="trust-item">
+                            <div class="trust-icon-wrapper">
+                                <i class="fa-solid fa-coins"></i>
+                            </div>
+                            <div>
+                                <div class="fw-bold text-dark">賣家成交 0% 手續費</div>
+                                <div class="text-xs text-muted">賣多少 賺多少</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. 熱門分類區 (Top Categories) -->
+    <section class="py-5" id="categories">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-end mb-4">
+                <div>
+                    <h2 class="fw-bold m-0 fs-3">熱門話題分類</h2>
+                    <p class="text-muted text-sm m-0 mt-1">標註「熱門」為目前賣家最快售出品項</p>
+                </div>
+                <a href="#" class="text-decoration-none fw-bold text-primary-orange">查看全部分類 <i
+                        class="fa-solid fa-arrow-right"></i></a>
+            </div>
+
+            <!-- Categories Horizontal Grid / Scroll -->
+            <div class="row g-3 flex-nowrap overflow-auto horizontal-scroll-mobile">
+                <div class="col-lg-2 col-md-3 col-6">
+                    <a href="#" class="category-card">
+                        <span class="hot-seller-badge">🔥 熱賣中</span>
+                        <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=300&q=80"
+                            alt="流行服飾" class="category-img">
+                        <div class="fw-bold text-sm">二手女裝服飾</div>
+                        <div class="text-xs text-muted">1.2w+ 件商品</div>
+                    </a>
+                </div>
+                <div class="col-lg-2 col-md-3 col-6">
+                    <a href="#" class="category-card">
+                        <span class="hot-seller-badge">極速售出</span>
+                        <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=300&q=80"
+                            alt="3C 數位" class="category-img">
+                        <div class="fw-bold text-sm">3C 數碼家電</div>
+                        <div class="text-xs text-muted">8,400+ 件商品</div>
+                    </a>
+                </div>
+                <div class="col-lg-2 col-md-3 col-6">
+                    <a href="#" class="category-card">
+                        <img src="https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?auto=format&fit=crop&w=300&q=80"
+                            alt="動漫周邊" class="category-img">
+                        <div class="fw-bold text-sm">動漫遊戲周邊</div>
+                        <div class="text-xs text-muted">1.5w+ 件商品</div>
+                    </a>
+                </div>
+                <div class="col-lg-2 col-md-3 col-6">
+                    <a href="#" class="category-card">
+                        <img src="https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?auto=format&fit=crop&w=300&q=80"
+                            alt="母嬰用品" class="category-img">
+                        <div class="fw-bold text-sm">嬰幼兒與玩具</div>
+                        <div class="text-xs text-muted">5,200+ 件商品</div>
+                    </a>
+                </div>
+                <div class="col-lg-2 col-md-3 col-6">
+                    <a href="#" class="category-card">
+                        <span class="hot-seller-badge">高保值</span>
+                        <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=300&q=80"
+                            alt="精品名牌" class="category-img">
+                        <div class="fw-bold text-sm">精品包款手錶</div>
+                        <div class="text-xs text-muted">3,100+ 件商品</div>
+                    </a>
+                </div>
+                <div class="col-lg-2 col-md-3 col-6">
+                    <a href="#" class="category-card">
+                        <img src="https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=300&q=80"
+                            alt="家居生活" class="category-img">
+                        <div class="fw-bold text-sm">傢俱戶外生活</div>
+                        <div class="text-xs text-muted">6,800+ 件商品</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. 動態商品推薦區 (Product Feeds & Cards) -->
+    <section class="py-4" id="feed">
+        <div class="container">
+            <!-- Tabs Navigation -->
+            <div class="d-flex justify-content-between align-items-center mb-4 border-bottom pb-2">
+                <ul class="nav nav-pills gap-2" id="productTabs">
+                    <li class="nav-item">
+                        <button class="nav-link active rounded-pill px-4 fw-bold" data-filter="all">✨ 猜你喜歡</button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link rounded-pill px-4 fw-bold" data-filter="new">⚡ 最新上架</button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link rounded-pill px-4 fw-bold" data-filter="sale">🔥 甜甜價挖寶</button>
+                    </li>
+                </ul>
+                <div class="text-muted text-sm d-none d-md-block">即時動態更新中</div>
+            </div>
+
+            <!-- Product Grid Layout (Responsive Desktop 4-col / Mobile 2-col) -->
+            <div class="row g-3 g-md-4" id="productGrid">
+
+                <!-- Card 1 -->
+                <div class="col-6 col-md-4 col-lg-3 product-item" data-category="sale">
+                    <div class="product-card">
+                        <div class="product-img-wrapper">
+                            <span class="condition-badge">95 新</span>
+                            <span class="free-shipping-badge">免運</span>
+                            <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=600&q=80"
+                                class="product-img" alt="Sony 耳機">
+                        </div>
+                        <div class="product-body">
+                            <div class="product-title">Sony WH-1000XM4 無線藍牙降噪頭戴式耳機 (黑色/公司貨盒裝齊全)</div>
+                            <div class="d-flex align-items-baseline mb-2">
+                                <span class="product-price">$5,200</span>
+                                <span class="original-price">$10,900</span>
+                            </div>
+                            <div class="seller-info">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80"
+                                    class="seller-avatar" alt="賣家頭像">
+                                <div class="me-auto text-xs overflow-hidden">
+                                    <div class="fw-bold text-truncate">TechGeek_TW</div>
+                                    <div class="text-muted"><i class="fa-solid fa-star text-warning"></i> 4.9 · 10分鐘前
+                                    </div>
+                                </div>
+                                <button class="btn-heart" title="收藏商品">
+                                    <i class="fa-regular fa-heart"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="col-6 col-md-4 col-lg-3 product-item" data-category="new">
+                    <div class="product-card">
+                        <div class="product-img-wrapper">
+                            <span class="condition-badge">99 新</span>
+                            <img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=600&q=80"
+                                class="product-img" alt="Leica 相機">
+                        </div>
+                        <div class="product-body">
+                            <div class="product-title">經典復古相機 附原廠皮套與兩顆備用電池 防潮箱保存</div>
+                            <div class="d-flex align-items-baseline mb-2">
+                                <span class="product-price">$12,800</span>
+                                <span class="original-price">$18,500</span>
+                            </div>
+                            <div class="seller-info">
+                                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&q=80"
+                                    class="seller-avatar" alt="賣家頭像">
+                                <div class="me-auto text-xs overflow-hidden">
+                                    <div class="fw-bold text-truncate">Emma_Photo</div>
+                                    <div class="text-muted"><i class="fa-solid fa-star text-warning"></i> 5.0 · 25分鐘前
+                                    </div>
+                                </div>
+                                <button class="btn-heart" title="收藏商品">
+                                    <i class="fa-regular fa-heart"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="col-6 col-md-4 col-lg-3 product-item" data-category="sale">
+                    <div class="product-card">
+                        <div class="product-img-wrapper">
+                            <span class="condition-badge">90 新</span>
+                            <span class="free-shipping-badge">降價</span>
+                            <img src="https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=600&q=80"
+                                class="product-img" alt="機械鍵盤">
+                        </div>
+                        <div class="product-body">
+                            <div class="product-title">客製化 RGB 熱插拔機械鍵盤 靜音紅軸 辦公打字首選</div>
+                            <div class="d-flex align-items-baseline mb-2">
+                                <span class="product-price">$1,450</span>
+                                <span class="original-price">$3,200</span>
+                            </div>
+                            <div class="seller-info">
+                                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=150&q=80"
+                                    class="seller-avatar" alt="賣家頭像">
+                                <div class="me-auto text-xs overflow-hidden">
+                                    <div class="fw-bold text-truncate">Alan_Design</div>
+                                    <div class="text-muted"><i class="fa-solid fa-star text-warning"></i> 4.8 · 1小時前
+                                    </div>
+                                </div>
+                                <button class="btn-heart" title="收藏商品">
+                                    <i class="fa-regular fa-heart"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="col-6 col-md-4 col-lg-3 product-item" data-category="new">
+                    <div class="product-card">
+                        <div class="product-img-wrapper">
+                            <span class="condition-badge">全新未拆</span>
+                            <span class="free-shipping-badge">免運</span>
+                            <img src="https://images.unsplash.com/photo-1590874103328-eac38a683ce7?auto=format&fit=crop&w=600&q=80"
+                                class="product-img" alt="精品女包">
+                        </div>
+                        <div class="product-body">
+                            <div class="product-title">專櫃真皮簡約單肩手提包 (附購證/防塵袋) 送禮自用皆宜</div>
+                            <div class="d-flex align-items-baseline mb-2">
+                                <span class="product-price">$3,800</span>
+                                <span class="original-price">$8,900</span>
+                            </div>
+                            <div class="seller-info">
+                                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80"
+                                    class="seller-avatar" alt="賣家頭像">
+                                <div class="me-auto text-xs overflow-hidden">
+                                    <div class="fw-bold text-truncate">Chloe_Style</div>
+                                    <div class="text-muted"><i class="fa-solid fa-star text-warning"></i> 5.0 · 3小時前
+                                    </div>
+                                </div>
+                                <button class="btn-heart" title="收藏商品">
+                                    <i class="fa-regular fa-heart"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="col-6 col-md-4 col-lg-3 product-item" data-category="sale">
+                    <div class="product-card">
+                        <div class="product-img-wrapper">
+                            <span class="condition-badge">95 新</span>
+                            <img src="https://images.unsplash.com/photo-1578303512597-81e6cc155b3e?auto=format&fit=crop&w=600&q=80"
+                                class="product-img" alt="Switch 遊戲機">
+                        </div>
+                        <div class="product-body">
+                            <div class="product-title">Nintendo Switch OLED 電力加強版 主機 (含3款熱門遊戲)</div>
+                            <div class="d-flex align-items-baseline mb-2">
+                                <span class="product-price">$6,800</span>
+                                <span class="original-price">$11,500</span>
+                            </div>
+                            <div class="seller-info">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80"
+                                    class="seller-avatar" alt="賣家頭像">
+                                <div class="me-auto text-xs overflow-hidden">
+                                    <div class="fw-bold text-truncate">Gamer_Boy</div>
+                                    <div class="text-muted"><i class="fa-solid fa-star text-warning"></i> 4.9 · 5小時前
+                                    </div>
+                                </div>
+                                <button class="btn-heart" title="收藏商品">
+                                    <i class="fa-regular fa-heart"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 6 -->
+                <div class="col-6 col-md-4 col-lg-3 product-item" data-category="new">
+                    <div class="product-card">
+                        <div class="product-img-wrapper">
+                            <span class="condition-badge">9 New</span>
+                            <span class="free-shipping-badge">免運</span>
+                            <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=600&q=80"
+                                class="product-img" alt="Nike 球鞋">
+                        </div>
+                        <div class="product-body">
+                            <div class="product-title">Nike Air Max 經典紅白配色 慢跑鞋 (US 9.5 / 正品公司貨)</div>
+                            <div class="d-flex align-items-baseline mb-2">
+                                <span class="product-price">$1,890</span>
+                                <span class="original-price">$4,500</span>
+                            </div>
+                            <div class="seller-info">
+                                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=150&q=80"
+                                    class="seller-avatar" alt="賣家頭像">
+                                <div class="me-auto text-xs overflow-hidden">
+                                    <div class="fw-bold text-truncate">Kicks_Collector</div>
+                                    <div class="text-muted"><i class="fa-solid fa-star text-warning"></i> 4.7 · 6小時前
+                                    </div>
+                                </div>
+                                <button class="btn-heart" title="收藏商品">
+                                    <i class="fa-regular fa-heart"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- View More Button -->
+            <div class="text-center mt-5">
+                <button class="btn btn-outline-dark rounded-pill px-5 py-2 fw-bold" id="btnLoadMore">
+                    載入更多熱門寶物 <i class="fa-solid fa-chevron-down ms-1"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. 賣家招募與簡單上架流程 (Sell Center Teaser) -->
+    <section class="py-5">
+        <div class="container">
+            <div class="sell-teaser-section">
+                <div class="row align-items-center g-4">
+                    <div class="col-lg-5">
+                        <span
+                            class="badge bg-primary-orange text-white px-3 py-2 rounded-pill mb-3 fw-bold">零成本變現</span>
+                        <h2 class="fw-bold fs-1 mb-3">家裡堆著沒用？<br>簡單 3 步驟秒變現！</h2>
+                        <p class="text-light opacity-75 mb-4">
+                            已有超過 <strong class="text-warning">50,000+ 位賣家</strong> 在 ReTrust
+                            清空房間、賺取每月額外零用錢。不需要複雜設定，手機拍完即可上架。
+                        </p>
+
+                        <!-- Live Stats Counter -->
+                        <div class="d-flex gap-4 border-top border-secondary pt-3 mt-2">
+                            <div>
+                                <div class="fs-3 fw-bold text-warning" id="liveTransactionCount">58,420</div>
+                                <div class="text-xs text-light opacity-75">本月成功配對件數</div>
+                            </div>
+                            <div class="border-start border-secondary ps-4">
+                                <div class="fs-3 fw-bold text-info">98.4%</div>
+                                <div class="text-xs text-light opacity-75">買家好處滿意度</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-7">
+                        <div class="row g-3">
+                            <div class="col-md-4">
+                                <div class="step-card">
+                                    <div class="step-number">1</div>
+                                    <h5 class="fw-bold mb-2">手機拍照</h5>
+                                    <p class="text-xs text-light opacity-75 m-0">用手機拍下物品清爽照片，支援多圖上傳</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="step-card">
+                                    <div class="step-number">2</div>
+                                    <h5 class="fw-bold mb-2">填寫簡單描述</h5>
+                                    <p class="text-xs text-light opacity-75 m-0">系統自動推薦分類與參考二手行情價</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="step-card">
+                                    <div class="step-number">3</div>
+                                    <h5 class="fw-bold mb-2">一鍵免費發布</h5>
+                                    <p class="text-xs text-light opacity-75 m-0">坐等買家下單，超商印單寄件超便利</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="text-center mt-4">
+                            <button class="btn btn-hero-primary px-5" data-bs-toggle="modal"
+                                data-bs-target="#sellModal">
+                                <i class="fa-solid fa-bolt me-2"></i>免費體驗 30 秒上架
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. 社群熱度與買賣家好評 (Social Proof & Community) -->
+    <section class="py-5 bg-white">
+        <div class="container">
+            <div class="text-center max-w-xl mx-auto mb-5">
+                <span class="text-primary-orange fw-bold text-sm">真實社群評價</span>
+                <h2 class="fw-bold fs-3 mt-1">聽聽其他買賣家怎麼說</h2>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="review-card">
+                        <div class="d-flex align-items-center gap-1 text-warning mb-3">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-secondary text-sm mb-4">
+                            「搬家前在 ReTrust 賣掉了舊單眼跟幾件只穿過一次的洋裝，沒想到兩天內就賣掉了！款項由第三方暫管，寄出後買家確認就撥款，非常讓人安心。」
+                        </p>
+                        <div class="d-flex align-items-center gap-3">
+                            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80"
+                                class="rounded-circle" width="40" height="40" alt="用戶頭像">
+                            <div>
+                                <div class="fw-bold text-sm">林小姐 (台北)</div>
+                                <div class="text-xs text-muted">成功賣出 14 件商品</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="review-card">
+                        <div class="d-flex align-items-center gap-1 text-warning mb-3">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-secondary text-sm mb-4">
+                            「身為 3C 迷，經常換耳機跟鍵盤。這裡的買家品質很高，介面沒有雜亂廣告，而且搜尋功能很精準，用超甜價格挖到絕版 Leica 鏡頭超開心！」
+                        </p>
+                        <div class="d-flex align-items-center gap-3">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80"
+                                class="rounded-circle" width="40" height="40" alt="用戶頭像">
+                            <div>
+                                <div class="fw-bold text-sm">David (台中)</div>
+                                <div class="text-xs text-muted">資深挖寶玩家</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="review-card">
+                        <div class="d-flex align-items-center gap-1 text-warning mb-3">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-secondary text-sm mb-4">
+                            「新手賣家零門檻！照著系統提示拍照跟定價，第一天就開張。客服回應速度很快，解決了我關於物流運送的疑問。」
+                        </p>
+                        <div class="d-flex align-items-center gap-3">
+                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&q=80"
+                                class="rounded-circle" width="40" height="40" alt="用戶頭像">
+                            <div>
+                                <div class="fw-bold text-sm">陳媽媽 (高雄)</div>
+                                <div class="text-xs text-muted">二手童裝賣家</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. 頁尾資訊區 (Footer) -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row g-4 mb-5">
+                <div class="col-lg-4">
+                    <a class="brand-logo mb-3" href="#">
+                        <i class="fa-solid fa-arrows-rotate text-primary-orange"></i>
+                        <span>ReTrust</span>
+                    </a>
+                    <p class="text-sm text-secondary mb-4">
+                        ReTrust 是致力於打造永續循環與極致安全的 C2C 二手電商平台。讓每件閒置好物發揮新價值，享受無負擔的交易體驗。
+                    </p>
+                    <div class="d-flex gap-3 fs-5 text-secondary">
+                        <a href="#" class="text-secondary"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="#" class="text-secondary"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="text-secondary"><i class="fa-brands fa-line"></i></a>
+                        <a href="#" class="text-secondary"><i class="fa-brands fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <div class="col-6 col-lg-2 footer-links">
+                    <div class="footer-title">買家服務</div>
+                    <a href="#">如何安全挖寶</a>
+                    <a href="#">第三方託管說明</a>
+                    <a href="#">超商取貨流程</a>
+                    <a href="#">退款與爭議處理</a>
+                </div>
+
+                <div class="col-6 col-lg-2 footer-links">
+                    <div class="footer-title">賣家專區</div>
+                    <a href="#">30秒免費上架</a>
+                    <a href="#">成交手續費優惠</a>
+                    <a href="#">熱賣大數據指引</a>
+                    <a href="#">違禁品上架規範</a>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="footer-title">下載 ReTrust App</div>
+                    <p class="text-xs text-secondary mb-3">隨時隨地拍照上架、即時聊聊議價不漏接</p>
+                    <div class="d-flex gap-2">
+                        <button class="btn btn-dark btn-sm rounded-pill px-3 py-2 d-flex align-items-center gap-2">
+                            <i class="fa-brands fa-apple fs-5"></i>
+                            <div class="text-start leading-none">
+                                <div style="font-size: 0.65rem;">Download on</div>
+                                <div class="fw-bold" style="font-size: 0.8rem;">App Store</div>
+                            </div>
+                        </button>
+                        <button class="btn btn-dark btn-sm rounded-pill px-3 py-2 d-flex align-items-center gap-2">
+                            <i class="fa-brands fa-google-play fs-5"></i>
+                            <div class="text-start leading-none">
+                                <div style="font-size: 0.65rem;">GET IT ON</div>
+                                <div class="fw-bold" style="font-size: 0.8rem;">Google Play</div>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div
+                class="border-top pt-4 d-flex flex-column flex-md-row justify-content-between align-items-center text-xs text-muted">
+                <div>© 2026 ReTrust Inc. 版權所有，不得轉載。</div>
+                <div class="d-flex gap-3 mt-2 mt-md-0">
+                    <a href="#" class="text-muted text-decoration-none">服務條款</a>
+                    <a href="#" class="text-muted text-decoration-none">隱私權政策</a>
+                    <a href="#" class="text-muted text-decoration-none">免責聲明</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Quick Sell Modal (免費上架彈窗) -->
+    <div class="modal fade" id="sellModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 rounded-4 shadow-lg">
+                <div class="modal-header border-0 pb-0">
+                    <h5 class="modal-title fw-bold">📸 快速免費上架商品</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <form id="quickSellForm">
+                        <div class="mb-3 text-center border-2 border-dashed rounded-3 p-4 bg-light"
+                            style="border-style: dashed; border-color: #CBD5E1;">
+                            <i class="fa-solid fa-cloud-arrow-up fs-2 text-primary-orange mb-2"></i>
+                            <div class="fw-bold text-sm">點擊上傳商品照片 (最多6張)</div>
+                            <div class="text-xs text-muted">支援 JPG, PNG 格式</div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label text-sm fw-bold">商品標題</label>
+                            <input type="text" class="form-control rounded-3" placeholder="如：Apple Watch S8 45mm 黑色 9成新"
+                                required>
+                        </div>
+                        <div class="row g-2 mb-3">
+                            <div class="col-6">
+                                <label class="form-label text-sm fw-bold">預售價格 ($NT)</label>
+                                <input type="number" class="form-control rounded-3" placeholder="例如：1200" required>
+                            </div>
+                            <div class="col-6">
+                                <label class="form-label text-sm fw-bold">新舊程度</label>
+                                <select class="form-select rounded-3">
+                                    <option>全新未拆</option>
+                                    <option selected>95 新 (極少使用)</option>
+                                    <option>90 新 (有輕微使用痕跡)</option>
+                                    <option>80 新 (功能正常)</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-hero-primary w-100 py-2.5">
+                            <i class="fa-solid fa-paper-plane me-1"></i> 立即免費發布
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JS Scripts (Bootstrap & jQuery) -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="JS/retrust.js"></script>
+</body>
+
+</html>

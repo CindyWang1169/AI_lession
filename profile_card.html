@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>王心湲 Cindy Wang - 個人名片網頁</title>
+    <style>
+        /* ===== 全局與背景設定 ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #2c3e50, #27ae60);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            color: #333;
+        }
+
+        /* ===== 卡片主體區塊 (Glassmorphism 風格) ===== */
+        .card-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 24px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 600px;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        /* ===== 頭像與個人資訊區塊 ===== */
+        .profile-header {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        /* 頭像容器設定（同時支援圖片與文字備用狀態） */
+        .avatar-wrapper {
+            width: 120px;
+            height: 120px;
+            flex-shrink: 0;
+            border-radius: 50%;
+            border: 4px solid #fff;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #43cea2, #185a9d);
+            /* 備用狀態的底色 */
+            color: #fff;
+            font-size: 1.5rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .avatar-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .profile-info {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .profile-info h1 {
+            font-size: 2rem;
+            color: #111;
+            font-weight: 700;
+        }
+
+        .profile-info .subtitle-text {
+            font-size: 1.1rem;
+            color: #555;
+            font-weight: 400;
+        }
+
+        .profile-info .title {
+            font-size: 1.2rem;
+            color: #27ae60;
+            font-weight: 600;
+            margin-top: 4px;
+        }
+
+        /* ===== 自傳簡介區塊 ===== */
+        .about-section {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: #444;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            padding: 20px 0;
+        }
+
+        /* ===== 技能列表區塊 ===== */
+        .skills-section h3 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: #222;
+        }
+
+        .skills-list {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .skills-list li {
+            background: rgba(39, 174, 96, 0.1);
+            color: #1e8449;
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border: 1px solid rgba(39, 174, 96, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .skills-list li:hover {
+            background: rgba(39, 174, 96, 0.2);
+            transform: translateY(-2px);
+        }
+
+        /* ===== 聯絡方式區塊 ===== */
+        .contact-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 15px;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            font-size: 0.95rem;
+            color: #555;
+        }
+
+        .contact-info span strong {
+            color: #222;
+            font-weight: 600;
+        }
+
+        /* 互動按鈕 */
+        .action-btn {
+            background: #111;
+            color: #fff;
+            padding: 14px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .action-btn:hover {
+            background: #333;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            transform: translateY(-3px);
+        }
+
+        /* ===== RWD 響應式設計 (手機螢幕) ===== */
+        @media (max-width: 550px) {
+            .card-container {
+                padding: 30px;
+            }
+
+            .profile-header {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                gap: 15px;
+            }
+
+            .profile-info {
+                align-items: center;
+            }
+
+            .contact-section {
+                flex-direction: column;
+                gap: 20px;
+                align-items: center;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- 主卡片容器 -->
+    <div class="card-container">
+
+        <!-- 1. 頭像與基本資料區塊 -->
+        <div class="profile-header">
+            <!-- 頭像放置區（帶有 onerror 防護：當圖片失效時會自動移除 img 標籤並顯示 "Cindy"） -->
+            <div class="avatar-wrapper" id="avatarContainer">
+                <img src="images/IMG_3623.jpg" alt="王心湲 Cindy Wang 的大頭照"
+                    onerror="this.parentElement.innerHTML='Cindy';">
+            </div>
+            <div class="profile-info">
+                <h1>王心湲</h1>
+                <div class="subtitle-text">Cindy Wang</div>
+                <div class="title">全端工程師 (Full-Stack Engineer)</div>
+            </div>
+        </div>
+
+        <!-- 2. 自傳摘要區塊 -->
+        <div class="about-section">
+            <p>畢業於嘉南藥理大學資訊管理學系，具備軟體開發與測試相關背景。曾任職於台鋼集團永洋科技擔任軟韌體測試工程師，負責自動化測試開發與維護。大學及工作期間積極參與產學合作與國際競賽（如台灣綠點子國際發明設計競賽銀牌），具備跨單位協作與AI系統設計經驗。重視程式品質與系統穩定度，期許成為能為團隊帶來實質貢獻的工程師。
+            </p>
+        </div>
+
+        <!-- 3. 技能列表區塊 -->
+        <div class="skills-section">
+            <h3>專業技能</h3>
+            <ul class="skills-list">
+                <li>MVC</li>
+                <li>python</li>
+                <li>HTML5</li>
+                <li>JS</li>
+                <li>C#</li>
+                <li>SQL Server</li>
+                <li>Bootstrap5</li>
+                <li>LINQ</li>
+                <li>ADO.NET</li>
+                <li>JQuery</li>
+                <li>AJax</li>
+                <li>Git版控</li>
+                <li>Vue</li>
+            </ul>
+        </div>
+
+        <!-- 4. 聯絡方式區塊 -->
+        <div class="contact-section">
+            <div class="contact-info">
+                <span><strong>電話：</strong> 0918-123456</span>
+                <span><strong>Email：</strong> cindy.wang@example.com</span>
+            </div>
+            <a href="mailto:cindy.wang@example.com" class="action-btn">聯絡我</a>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
