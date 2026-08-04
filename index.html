@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ReTrust｜MargeIndex</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@600;700;900&family=Noto+Sans+TC:wght@400;500;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@600;700;900&family=Noto+Sans+TC:wght@400;500;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet">
   <style>
     :root {
       --paper: #F1EEE3;
@@ -23,8 +26,16 @@
       --brand-amber: #de6f43;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       font-family: 'Noto Sans TC', 'Plus Jakarta Sans', sans-serif;
       background: var(--paper);
@@ -32,131 +43,660 @@
       line-height: 1.7;
       overflow-x: hidden;
     }
-    h1, h2, h3, h4, h5 { font-family: 'Noto Serif TC', serif; font-weight: 900; color: var(--ink); letter-spacing: .01em; }
-    p { color: var(--ink-soft); }
-    a { color: inherit; text-decoration: none; }
-    img { max-width: 100%; display: block; }
-    .wrap { max-width: 1180px; margin: 0 auto; padding: 0 32px; }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5 {
+      font-family: 'Noto Serif TC', serif;
+      font-weight: 900;
+      color: var(--ink);
+      letter-spacing: .01em;
+    }
+
+    p {
+      color: var(--ink-soft);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .wrap {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
 
     /* NAV */
     header {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      padding: 18px 0; background: rgba(241,238,227,0);
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 18px 0;
+      background: rgba(241, 238, 227, 0);
       transition: transform .35s ease, background .35s ease, box-shadow .35s ease;
     }
+
     header.scrolled {
-      background: rgba(241,238,227,0.88);
+      background: rgba(241, 238, 227, 0.88);
       backdrop-filter: blur(14px) saturate(140%);
       box-shadow: 0 1px 0 var(--line);
     }
-    .nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
-    .logo { display: flex; align-items: center; gap: 10px; font-family: 'Noto Serif TC', serif; font-weight: 900; font-size: 1.35rem; }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Noto Serif TC', serif;
+      font-weight: 900;
+      font-size: 1.35rem;
+    }
+
     .logo .chop {
-      width: 34px; height: 34px; border-radius: 8px; background: var(--brand-green); display: flex; align-items: center; justify-content: center; transform: rotate(-6deg);
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      background: var(--brand-green);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transform: rotate(-6deg);
       box-shadow: 0 3px 0 var(--jade-deep);
     }
+
     .logo .chop img {
-      width: 100%; height: 100%; object-fit: contain;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
       border-radius: 8px;
     }
-    .nav-links { display: flex; gap: 24px; font-size: .92rem; font-weight: 500; color: var(--ink-soft); flex-wrap: wrap; }
-    .nav-links a:hover { color: var(--jade-deep); }
-    .nav-cta { display: flex; gap: 12px; align-items: center; }
-    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 13px 26px; border-radius: 999px; font-weight: 700; font-size: .92rem; cursor: pointer; border: none; transition: transform .18s cubic-bezier(.2,.9,.3,1), box-shadow .25s ease, background .2s ease; white-space: nowrap; }
-    .btn:active { transform: scale(.96); }
-    .btn-primary { background: var(--stamp); color: #fff; box-shadow: 0 8px 20px rgba(193,68,45,.28); }
-    .btn-primary:hover { background: var(--stamp-deep); box-shadow: 0 10px 24px rgba(193,68,45,.36); }
-    .btn-ghost { background: transparent; color: var(--ink); border: 1.5px solid var(--ink); }
-    .btn-ghost:hover { background: var(--ink); color: var(--paper); }
-    .btn-jade { background: var(--jade); color: #fff; box-shadow: 0 8px 20px rgba(63,99,85,.28); }
-    .btn-jade:hover { background: var(--jade-deep); }
-    .btn-sm { padding: 9px 18px; font-size: .82rem; }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      font-size: .92rem;
+      font-weight: 500;
+      color: var(--ink-soft);
+      flex-wrap: wrap;
+    }
+
+    .nav-links a:hover {
+      color: var(--jade-deep);
+    }
+
+    .nav-cta {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 26px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: .92rem;
+      cursor: pointer;
+      border: none;
+      transition: transform .18s cubic-bezier(.2, .9, .3, 1), box-shadow .25s ease, background .2s ease;
+      white-space: nowrap;
+    }
+
+    .btn:active {
+      transform: scale(.96);
+    }
+
+    .btn-primary {
+      background: var(--stamp);
+      color: #fff;
+      box-shadow: 0 8px 20px rgba(193, 68, 45, .28);
+    }
+
+    .btn-primary:hover {
+      background: var(--stamp-deep);
+      box-shadow: 0 10px 24px rgba(193, 68, 45, .36);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--ink);
+      border: 1.5px solid var(--ink);
+    }
+
+    .btn-ghost:hover {
+      background: var(--ink);
+      color: var(--paper);
+    }
+
+    .btn-jade {
+      background: var(--jade);
+      color: #fff;
+      box-shadow: 0 8px 20px rgba(63, 99, 85, .28);
+    }
+
+    .btn-jade:hover {
+      background: var(--jade-deep);
+    }
+
+    .btn-sm {
+      padding: 9px 18px;
+      font-size: .82rem;
+    }
 
     /* HERO */
-    .hero { padding: 168px 0 100px; position: relative; }
-    .hero-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 60px; align-items: center; }
-    @media(max-width: 960px) { .hero-grid { grid-template-columns: 1fr; } }
-    .hero h1 { font-size: clamp(2.4rem, 4.4vw, 3.6rem); line-height: 1.18; margin: 18px 0 22px; }
-    .hero p.lead { font-size: 1.08rem; color: var(--ink-soft); max-width: 520px; margin-bottom: 34px; }
-    .hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 28px; }
-    .hero-tags { display: flex; gap: 10px; flex-wrap: wrap; }
-    .tag { font-size: .78rem; font-weight: 600; padding: 6px 14px; border-radius: 999px; background: var(--card); border: 1px solid var(--line); color: var(--ink-soft); }
+    .hero {
+      padding: 168px 0 100px;
+      position: relative;
+    }
 
-    .hero-visual { position: relative; height: 460px; }
-    .stamp-orb { position: absolute; width: 230px; height: 230px; border-radius: 50%; border: 2.5px dashed var(--stamp); display: flex; align-items: center; justify-content: center; top: 8%; right: 6%; animation: spin 26s linear infinite; }
-    .stamp-orb .core { width: 150px; height: 150px; border-radius: 50%; background: var(--stamp); color: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-weight: 900; transform: rotate(-14deg); box-shadow: 0 14px 30px rgba(193,68,45,.35); }
-    .stamp-orb .core span { font-size: 1.5rem; letter-spacing: .05em; }
-    .stamp-orb .core small { font-family: 'Plus Jakarta Sans', sans-serif; font-size: .62rem; letter-spacing: .18em; margin-top: 2px; }
-    @keyframes spin { from { transform: rotate(0); } to { transform: rotate(360deg); } }
-    .float-card { position: absolute; background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px 18px; box-shadow: 0 16px 30px rgba(32,36,30,.10); animation: float 5.5s ease-in-out infinite; }
-    .float-card.c1 { top: 2%; left: 0; width: 190px; }
-    .float-card.c2 { bottom: 8%; left: 12%; width: 210px; animation-delay: 1.2s; }
-    .float-card.c3 { bottom: 0%; right: 14%; width: 170px; animation-delay: 2.4s; }
-    @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
-    .float-card .ft-title { font-weight: 700; font-size: .86rem; margin-bottom: 2px; }
-    .float-card .ft-sub { font-size: .76rem; color: var(--ink-soft); }
-    .float-card .ft-price { font-family: 'IBM Plex Mono', monospace; font-weight: 600; color: var(--jade-deep); margin-top: 6px; font-size: .9rem; }
-    @media(max-width: 960px) { .hero-visual { height: 340px; margin-top: 20px; } .stamp-orb { width: 160px; height: 160px; } .stamp-orb .core { width: 104px; height: 104px; } .float-card { display: none; } }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 60px;
+      align-items: center;
+    }
 
-    .eyebrow { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: .72rem; letter-spacing: .22em; text-transform: uppercase; color: var(--jade-deep); display: flex; align-items: center; gap: 10px; }
-    .eyebrow::before { content: ""; width: 22px; height: 1px; background: var(--stamp); display: inline-block; }
+    @media(max-width: 960px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+    }
 
-    .section-head { max-width: 640px; margin-bottom: 56px; }
-    .section-head h2 { font-size: clamp(1.8rem, 3vw, 2.4rem); margin-top: 14px; }
-    .section-head p { color: var(--ink-soft); margin-top: 14px; }
+    .hero h1 {
+      font-size: clamp(2.4rem, 4.4vw, 3.6rem);
+      line-height: 1.18;
+      margin: 18px 0 22px;
+    }
 
-    .pillar-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 20px; }
-    @media(max-width: 960px) { .pillar-grid { grid-template-columns: 1fr 1fr; } }
-    @media(max-width: 560px) { .pillar-grid { grid-template-columns: 1fr; } }
-    .pillar-card { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 30px 24px; transition: transform .3s cubic-bezier(.2,.9,.3,1), box-shadow .3s ease, border-color .3s; display: flex; flex-direction: column; height: 100%; }
-    .pillar-card:hover { transform: translateY(-6px); box-shadow: 0 20px 36px rgba(32,36,30,.10); border-color: var(--jade); }
-    .pillar-num { font-family: 'IBM Plex Mono', monospace; font-size: .78rem; color: var(--stamp); margin-bottom: 16px; }
-    .pillar-card h3 { font-size: 1.2rem; margin-bottom: 10px; }
-    .pillar-card p { color: var(--ink-soft); font-size: .9rem; flex-grow: 1; }
-    .pill-link { margin-top: 18px; font-weight: 700; font-size: .85rem; color: var(--jade-deep); display: flex; align-items: center; gap: 6px; }
+    .hero p.lead {
+      font-size: 1.08rem;
+      color: var(--ink-soft);
+      max-width: 520px;
+      margin-bottom: 34px;
+    }
 
-    .trust { background: var(--paper-deep); padding: 100px 0; }
-    .trust-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 56px; align-items: center; }
-    @media(max-width: 900px) { .trust-grid { grid-template-columns: 1fr; } }
-    .grade-row { display: flex; align-items: center; gap: 18px; padding: 18px 0; border-bottom: 1px solid var(--line); }
-    .grade-row:last-child { border-bottom: none; }
-    .grade-badge { width: 52px; height: 52px; border-radius: 50%; background: var(--jade); color: #fff; display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-weight: 900; font-size: 1.05rem; flex-shrink: 0; }
-    .grade-row.s .grade-badge { background: var(--stamp); }
-    .grade-text b { display: block; font-size: .98rem; margin-bottom: 2px; }
-    .grade-text span { font-size: .84rem; color: var(--ink-soft); }
+    .hero-ctas {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 28px;
+    }
 
-    .steps-list { counter-reset: step; }
-    .step-item { display: flex; gap: 20px; padding: 22px 0; border-top: 1px solid var(--line); }
-    .step-item:first-child { border-top: none; }
-    .step-mark { font-family: 'IBM Plex Mono', monospace; font-weight: 600; color: var(--stamp); font-size: .85rem; padding-top: 4px; width: 34px; flex-shrink: 0; }
-    .step-item h4 { font-size: 1.02rem; margin-bottom: 6px; }
-    .step-item p { color: var(--ink-soft); font-size: .9rem; }
+    .hero-tags {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
 
-    .feed { padding: 110px 0; }
-    .feed-head { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 44px; flex-wrap: wrap; gap: 20px; }
-    .filter-row { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 36px; }
-    .filter-chip { font-size: .82rem; font-weight: 600; padding: 8px 16px; border-radius: 999px; border: 1px solid var(--line); background: var(--card); color: var(--ink-soft); cursor: default; }
-    .filter-chip.active { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+    .tag {
+      font-size: .78rem;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: var(--card);
+      border: 1px solid var(--line);
+      color: var(--ink-soft);
+    }
+
+    .hero-visual {
+      position: relative;
+      height: 460px;
+    }
+
+    .stamp-orb {
+      position: absolute;
+      width: 230px;
+      height: 230px;
+      border-radius: 50%;
+      border: 2.5px dashed var(--stamp);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      top: 8%;
+      right: 6%;
+      animation: spin 26s linear infinite;
+    }
+
+    .stamp-orb .core {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      background: var(--stamp);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Noto Serif TC', serif;
+      font-weight: 900;
+      transform: rotate(-14deg);
+      box-shadow: 0 14px 30px rgba(193, 68, 45, .35);
+    }
+
+    .stamp-orb .core span {
+      font-size: 1.5rem;
+      letter-spacing: .05em;
+    }
+
+    .stamp-orb .core small {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: .62rem;
+      letter-spacing: .18em;
+      margin-top: 2px;
+    }
+
+    @keyframes spin {
+      from {
+        transform: rotate(0);
+      }
+
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .float-card {
+      position: absolute;
+      /* background: var(--card); */
+      /* border: 1px solid var(--line); */
+      /* border-radius: var(--radius); */
+      background: rgba(255, 253, 247, .73);
+      border: 1px solid rgba(166, 117, 79, .72);
+      border-radius: 16px;
+      padding: 16px 18px;
+      /* box-shadow: 0 16px 30px rgba(32, 36, 30, .10); */
+      box-shadow: 0 18px 34px rgba(71, 54, 35, .12), inset 0 1px 0 rgba(255, 255, 255, .82);
+      animation: float 5.5s ease-in-out infinite;
+      backdrop-filter: blur(14px);
+    }
+
+    .float-card.c1 {
+      top: 2%;
+      left: 0;
+      width: 225px;
+      z-index: 3;
+    }
+
+    .float-card.c2 {
+      bottom: 8%;
+      left: 12%;
+      width: 210px;
+      animation-delay: 1.2s;
+    }
+
+    .float-card.c3 {
+      bottom: 0%;
+      right: 14%;
+      width: 170px;
+      animation-delay: 2.4s;
+    }
+
+    @keyframes float {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-12px);
+      }
+    }
+
+    .float-card .ft-title {
+      font-weight: 700;
+      font-size: .92rem;
+      color: #30332F;
+      line-height: 1.45;
+      margin-bottom: 4px;
+    }
+
+    .float-card .ft-sub {
+      font-size: .76rem;
+      color: #7D7C74;
+    }
+
+    .float-card .ft-price {
+      font-family: 'Plus Jakarta Sans', 'Noto Sans TC', sans-serif;
+      font-weight: 700;
+      color: var(--stamp);
+      margin-top: 8px;
+      font-size: 1.08rem;
+      letter-spacing: .01em;
+    }
+
+    /* .float-card .ft-title {
+      font-weight: 700;
+      font-size: .86rem;
+      margin-bottom: 2px;
+    }
+
+    .float-card .ft-sub {
+      font-size: .76rem;
+      color: var(--ink-soft);
+    }
+
+    .float-card .ft-price {
+      font-family: 'IBM Plex Mono', monospace;
+      font-weight: 600;
+      color: var(--jade-deep);
+      margin-top: 6px;
+      font-size: .9rem;
+    } */
+
+    @media(max-width: 960px) {
+      .hero-visual {
+        height: 340px;
+        margin-top: 20px;
+      }
+
+      .stamp-orb {
+        width: 160px;
+        height: 160px;
+      }
+
+      .stamp-orb .core {
+        width: 104px;
+        height: 104px;
+      }
+
+      .float-card {
+        display: none;
+      }
+    }
+
+    .eyebrow {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      font-size: .72rem;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--jade-deep);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 22px;
+      height: 1px;
+      background: var(--stamp);
+      display: inline-block;
+    }
+
+    .section-head {
+      max-width: 640px;
+      margin-bottom: 56px;
+    }
+
+    .section-head h2 {
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+      margin-top: 14px;
+    }
+
+    .section-head p {
+      color: var(--ink-soft);
+      margin-top: 14px;
+    }
+
+    .pillar-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    @media(max-width: 960px) {
+      .pillar-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media(max-width: 560px) {
+      .pillar-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .pillar-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 30px 24px;
+      transition: transform .3s cubic-bezier(.2, .9, .3, 1), box-shadow .3s ease, border-color .3s;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .pillar-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 36px rgba(32, 36, 30, .10);
+      border-color: var(--jade);
+    }
+
+    .pillar-num {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: .78rem;
+      color: var(--stamp);
+      margin-bottom: 16px;
+    }
+
+    .pillar-card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+    }
+
+    .pillar-card p {
+      color: var(--ink-soft);
+      font-size: .9rem;
+      flex-grow: 1;
+    }
+
+    .pill-link {
+      margin-top: 18px;
+      font-weight: 700;
+      font-size: .85rem;
+      color: var(--jade-deep);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .trust {
+      background: var(--paper-deep);
+      padding: 100px 0;
+    }
+
+    .trust-grid {
+      display: grid;
+      grid-template-columns: .9fr 1.1fr;
+      gap: 56px;
+      align-items: center;
+    }
+
+    @media(max-width: 900px) {
+      .trust-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .grade-row {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .grade-row:last-child {
+      border-bottom: none;
+    }
+
+    .grade-badge {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: var(--jade);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Noto Serif TC', serif;
+      font-weight: 900;
+      font-size: 1.05rem;
+      flex-shrink: 0;
+    }
+
+    .grade-row.s .grade-badge {
+      background: var(--stamp);
+    }
+
+    .grade-text b {
+      display: block;
+      font-size: .98rem;
+      margin-bottom: 2px;
+    }
+
+    .grade-text span {
+      font-size: .84rem;
+      color: var(--ink-soft);
+    }
+
+    .steps-list {
+      counter-reset: step;
+    }
+
+    .step-item {
+      display: flex;
+      gap: 20px;
+      padding: 22px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .step-item:first-child {
+      border-top: none;
+    }
+
+    .step-mark {
+      font-family: 'IBM Plex Mono', monospace;
+      font-weight: 600;
+      color: var(--stamp);
+      font-size: .85rem;
+      padding-top: 4px;
+      width: 34px;
+      flex-shrink: 0;
+    }
+
+    .step-item h4 {
+      font-size: 1.02rem;
+      margin-bottom: 6px;
+    }
+
+    .step-item p {
+      color: var(--ink-soft);
+      font-size: .9rem;
+    }
+
+    .feed {
+      padding: 110px 0;
+    }
+
+    .feed-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 44px;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .filter-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 36px;
+    }
+
+    .filter-chip {
+      font-size: .82rem;
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: var(--card);
+      color: var(--ink-soft);
+      cursor: default;
+    }
+
+    .filter-chip.active {
+      background: var(--ink);
+      color: var(--paper);
+      border-color: var(--ink);
+    }
 
     .item-grid {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 20px;
     }
-    @media(max-width: 960px) { .item-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-    @media(max-width: 760px) { .item-grid { grid-template-columns: 1fr; } }
 
-    .item-card { break-inside: avoid; margin-bottom: 20px; background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; transition: transform .3s cubic-bezier(.2,.9,.3,1), box-shadow .3s ease, border-color .3s ease; }
-    .item-card:hover { transform: translateY(-5px) scale(1.02); box-shadow: 0 22px 38px rgba(32,36,30,.18); border-color: rgba(63,99,85,.18); }
+    @media(max-width: 960px) {
+      .item-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media(max-width: 760px) {
+      .item-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .item-card {
+      break-inside: avoid;
+      margin-bottom: 20px;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: transform .3s cubic-bezier(.2, .9, .3, 1), box-shadow .3s ease, border-color .3s ease;
+    }
+
+    .item-card:hover {
+      transform: translateY(-5px) scale(1.02);
+      box-shadow: 0 22px 38px rgba(32, 36, 30, .18);
+      border-color: rgba(63, 99, 85, .18);
+    }
 
     .item-thumb {
       width: 100%;
       display: grid;
       place-items: center;
       min-height: 220px;
-      background: linear-gradient(135deg,#E4E0D0,#D6D2BE);
+      background: linear-gradient(135deg, #E4E0D0, #D6D2BE);
       overflow: hidden;
     }
+
     .item-thumb img {
       max-width: 100%;
       max-height: 280px;
@@ -164,6 +704,7 @@
       height: auto;
       object-fit: contain;
     }
+
     .item-thumb.h1,
     .item-thumb.h2,
     .item-thumb.h3,
@@ -172,484 +713,868 @@
       height: auto;
     }
 
-    .item-body { padding: 22px; display: flex; flex-direction: column; gap: 12px; }
-    .item-badge { display: inline-flex; align-items: center; justify-content: center; align-self: flex-start; font-size: .78rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; border-radius: 999px; padding: 8px 14px; border: 1px solid transparent; }
-    .badge-c2c { background: rgba(63,99,85,.08); color: var(--jade-deep); border-color: rgba(63,99,85,.16); }
-    .badge-official { background: rgba(193,68,45,.1); color: var(--stamp); border-color: rgba(193,68,45,.2); }
-    .badge-rent { background: rgba(44,70,60,.1); color: var(--jade); border-color: rgba(44,70,60,.16); }
-    .item-title { font-size: 1rem; font-weight: 700; color: var(--ink); line-height: 1.35; }
-    .item-sub { color: var(--ink-soft); font-size: .92rem; line-height: 1.6; min-height: 3.2em; }
-    .item-price { font-weight: 800; color: var(--jade-deep); font-size: 1rem; margin-top: auto; }
-    .item-price .old { font-family: 'IBM Plex Mono', monospace; font-size: .8rem; color: var(--ink-soft); margin-left: 10px; text-decoration: line-through; }
+    .item-body {
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
 
-    .feed .more-btn { text-align: center; margin-top: 36px; }
+    .item-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      align-self: flex-start;
+      font-size: .78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      border-radius: 999px;
+      padding: 8px 14px;
+      border: 1px solid transparent;
+    }
 
-    .how { background: var(--ink); color: var(--paper); padding: 110px 0; }
-    .how .section-head h2, .how .section-head p { color: var(--paper); }
-    .how .section-head p { color: #B7BAB0; }
-    .how-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
-    @media(max-width: 860px) { .how-grid { grid-template-columns: 1fr; } }
-    .how-card { background: rgba(251,250,245,.05); border: 1px solid rgba(251,250,245,.14); border-radius: var(--radius); padding: 30px 26px; }
-    .how-card .hnum { font-family: 'IBM Plex Mono', monospace; color: var(--stamp); font-size: .85rem; margin-bottom: 18px; }
-    .how-card h3 { color: var(--paper); font-size: 1.1rem; margin-bottom: 10px; }
-    .how-card p { color: #B7BAB0; font-size: .9rem; }
+    .badge-c2c {
+      background: rgba(63, 99, 85, .08);
+      color: var(--jade-deep);
+      border-color: rgba(63, 99, 85, .16);
+    }
 
-    .forum { padding: 110px 0; }
-    .forum-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-    @media(max-width: 860px) { .forum-grid { grid-template-columns: 1fr; } }
-    .thread-card { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px 24px; }
-    .thread-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
-    .thread-tag { font-size: .72rem; font-weight: 700; color: var(--jade-deep); background: var(--paper-deep); padding: 3px 10px; border-radius: 999px; }
-    .thread-card h4 { font-size: 1rem; margin-bottom: 8px; }
-    .thread-card p { font-size: .88rem; color: var(--ink-soft); }
-    .thread-meta { display: flex; gap: 14px; font-size: .78rem; color: #8B8C82; margin-top: 14px; }
+    .badge-official {
+      background: rgba(193, 68, 45, .1);
+      color: var(--stamp);
+      border-color: rgba(193, 68, 45, .2);
+    }
 
-    .proof { background: var(--paper-deep); padding: 90px 0; }
-    .counter-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; margin-bottom: 56px; }
-    @media(max-width: 760px) { .counter-grid { grid-template-columns: 1fr; } }
-    .counter { text-align: center; }
-    .counter .num { font-family: 'Noto Serif TC', serif; font-weight: 900; font-size: 2.6rem; color: var(--jade-deep); }
-    .counter .lbl { font-size: .85rem; color: var(--ink-soft); margin-top: 6px; }
-    .testi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
-    @media(max-width: 760px) { .testi-grid { grid-template-columns: 1fr; } }
-    .testi { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 28px; }
-    .testi p { font-size: .95rem; margin-bottom: 16px; }
-    .testi .who { font-size: .82rem; font-weight: 700; color: var(--jade-deep); }
+    .badge-rent {
+      background: rgba(44, 70, 60, .1);
+      color: var(--jade);
+      border-color: rgba(44, 70, 60, .16);
+    }
 
-    .final { background: var(--jade-deep); color: #fff; padding: 120px 0; text-align: center; position: relative; overflow: hidden; }
-    .final h2 { color: #fff; font-size: clamp(2rem, 4vw, 2.8rem); margin-bottom: 18px; }
-    .final p { color: #D7E0DA; max-width: 520px; margin: 0 auto 36px; }
-    .final .ctas { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
-    .final .btn-ghost { border-color: #fff; color: #fff; }
-    .final .btn-ghost:hover { background: #fff; color: var(--jade-deep); }
+    .item-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.35;
+    }
 
-    footer { background: var(--ink); color: #B7BAB0; padding: 56px 0 30px; font-size: .86rem; }
-    .foot-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 32px; margin-bottom: 36px; }
-    @media(max-width: 760px) { .foot-grid { grid-template-columns: 1fr 1fr; } }
-    footer h5 { color: var(--paper); font-size: .85rem; margin-bottom: 14px; letter-spacing: .05em; }
-    footer a { display: block; margin-bottom: 9px; color: #9FA298; }
-    footer a:hover { color: var(--paper); }
-    .foot-bottom { border-top: 1px solid rgba(255,255,255,.1); padding-top: 22px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; color: #7C7E75; }
+    .item-sub {
+      color: var(--ink-soft);
+      font-size: .92rem;
+      line-height: 1.6;
+      min-height: 3.2em;
+    }
+
+    .item-price {
+      font-weight: 800;
+      color: var(--jade-deep);
+      font-size: 1rem;
+      margin-top: auto;
+    }
+
+    .item-price .old {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: .8rem;
+      color: var(--ink-soft);
+      margin-left: 10px;
+      text-decoration: line-through;
+    }
+
+    .feed .more-btn {
+      text-align: center;
+      margin-top: 36px;
+    }
+
+    .how {
+      background: var(--ink);
+      color: var(--paper);
+      padding: 110px 0;
+    }
+
+    .how .section-head h2,
+    .how .section-head p {
+      color: var(--paper);
+    }
+
+    .how .section-head p {
+      color: #B7BAB0;
+    }
+
+    .how-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    @media(max-width: 860px) {
+      .how-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .how-card {
+      background: rgba(251, 250, 245, .05);
+      border: 1px solid rgba(251, 250, 245, .14);
+      border-radius: var(--radius);
+      padding: 30px 26px;
+    }
+
+    .how-card .hnum {
+      font-family: 'IBM Plex Mono', monospace;
+      color: var(--stamp);
+      font-size: .85rem;
+      margin-bottom: 18px;
+    }
+
+    .how-card h3 {
+      color: var(--paper);
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+    }
+
+    .how-card p {
+      color: #B7BAB0;
+      font-size: .9rem;
+    }
+
+    .forum {
+      padding: 110px 0;
+    }
+
+    .forum-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    @media(max-width: 860px) {
+      .forum-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .thread-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 22px 24px;
+    }
+
+    .thread-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .thread-tag {
+      font-size: .72rem;
+      font-weight: 700;
+      color: var(--jade-deep);
+      background: var(--paper-deep);
+      padding: 3px 10px;
+      border-radius: 999px;
+    }
+
+    .thread-card h4 {
+      font-size: 1rem;
+      margin-bottom: 8px;
+    }
+
+    .thread-card p {
+      font-size: .88rem;
+      color: var(--ink-soft);
+    }
+
+    .thread-meta {
+      display: flex;
+      gap: 14px;
+      font-size: .78rem;
+      color: #8B8C82;
+      margin-top: 14px;
+    }
+
+    .proof {
+      background: var(--paper-deep);
+      padding: 90px 0;
+    }
+
+    .counter-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-bottom: 56px;
+    }
+
+    @media(max-width: 760px) {
+      .counter-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .counter {
+      text-align: center;
+    }
+
+    .counter .num {
+      font-family: 'Noto Serif TC', serif;
+      font-weight: 900;
+      font-size: 2.6rem;
+      color: var(--jade-deep);
+    }
+
+    .counter .lbl {
+      font-size: .85rem;
+      color: var(--ink-soft);
+      margin-top: 6px;
+    }
+
+    .testi-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+    }
+
+    @media(max-width: 760px) {
+      .testi-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .testi {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 28px;
+    }
+
+    .testi p {
+      font-size: .95rem;
+      margin-bottom: 16px;
+    }
+
+    .testi .who {
+      font-size: .82rem;
+      font-weight: 700;
+      color: var(--jade-deep);
+    }
+
+    .final {
+      background: var(--jade-deep);
+      color: #fff;
+      padding: 120px 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .final h2 {
+      color: #fff;
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      margin-bottom: 18px;
+    }
+
+    .final p {
+      color: #D7E0DA;
+      max-width: 520px;
+      margin: 0 auto 36px;
+    }
+
+    .final .ctas {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .final .btn-ghost {
+      border-color: #fff;
+      color: #fff;
+    }
+
+    .final .btn-ghost:hover {
+      background: #fff;
+      color: var(--jade-deep);
+    }
+
+    footer {
+      background: var(--ink);
+      color: #B7BAB0;
+      padding: 56px 0 30px;
+      font-size: .86rem;
+    }
+
+    .foot-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr 1fr;
+      gap: 32px;
+      margin-bottom: 36px;
+    }
+
+    @media(max-width: 760px) {
+      .foot-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    footer h5 {
+      color: var(--paper);
+      font-size: .85rem;
+      margin-bottom: 14px;
+      letter-spacing: .05em;
+    }
+
+    footer a {
+      display: block;
+      margin-bottom: 9px;
+      color: #9FA298;
+    }
+
+    footer a:hover {
+      color: var(--paper);
+    }
+
+    .foot-bottom {
+      border-top: 1px solid rgba(255, 255, 255, .1);
+      padding-top: 22px;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      color: #7C7E75;
+    }
 
     .back-top {
-      position: fixed; bottom: 26px; right: 26px; width: 46px; height: 46px; border-radius: 50%; background: var(--ink); color: var(--paper);
-      display: flex; align-items: center; justify-content: center; font-size: 1.1rem; opacity: 0; pointer-events: none; transition: opacity .3s, transform .2s; z-index: 90; cursor: pointer;
+      position: fixed;
+      bottom: 26px;
+      right: 26px;
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: var(--ink);
+      color: var(--paper);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .3s, transform .2s;
+      z-index: 90;
+      cursor: pointer;
     }
-    .back-top.show { opacity: 1; pointer-events: auto; }
-    .back-top:hover { transform: translateY(-3px); }
 
-    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.8,.3,1); }
-    .reveal.in { opacity: 1; transform: translateY(0); }
+    .back-top.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
 
-    .accordion { border-radius: var(--radius); overflow: hidden; }
-    .accordion-item { border-bottom: 1px solid var(--line); }
-    .accordion-button { width: 100%; background: var(--card); color: var(--ink); border: none; padding: 18px 22px; text-align: left; font-weight: 700; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-size: .95rem; }
-    .accordion-button:hover { background: #f6f2e7; }
-    .accordion-button::after { content: '\25be'; transition: transform .25s ease; }
-    .accordion-button.active::after { transform: rotate(180deg); }
-    .accordion-panel { max-height: 0; overflow: hidden; transition: max-height .35s ease, padding .35s ease; background: #fff; padding: 0 22px; }
-    .accordion-panel.open { max-height: 240px; padding: 18px 22px; }
-    .accordion-panel p { margin: 0; color: var(--ink-soft); }
+    .back-top:hover {
+      transform: translateY(-3px);
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity .7s ease, transform .7s cubic-bezier(.2, .8, .3, 1);
+    }
+
+    .reveal.in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .accordion {
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    .accordion-item {
+      border-bottom: 1px solid var(--line);
+    }
+
+    .accordion-button {
+      width: 100%;
+      background: var(--card);
+      color: var(--ink);
+      border: none;
+      padding: 18px 22px;
+      text-align: left;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: .95rem;
+    }
+
+    .accordion-button:hover {
+      background: #f6f2e7;
+    }
+
+    .accordion-button::after {
+      content: '\25be';
+      transition: transform .25s ease;
+    }
+
+    .accordion-button.active::after {
+      transform: rotate(180deg);
+    }
+
+    .accordion-panel {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .35s ease, padding .35s ease;
+      background: #fff;
+      padding: 0 22px;
+    }
+
+    .accordion-panel.open {
+      max-height: 240px;
+      padding: 18px 22px;
+    }
+
+    .accordion-panel p {
+      margin: 0;
+      color: var(--ink-soft);
+    }
   </style>
 </head>
+
 <body>
 
-<header id="header">
-  <div class="wrap nav-inner">
-    <div class="logo"><span class="chop"><img src="/plans/logo/logoRetrust300.png" alt="ReTrust logo"></span>ReTrust</div>
-    <nav class="nav-links">
-      <a href="#home">首頁</a>
-      <a href="#manifesto">品牌理念</a>
-      <a href="#pillars">四大服務</a>
-      <a href="#trust">認證機制</a>
-      <a href="#feed">好物推薦</a>
-      <a href="#faq">常見問題</a>
-      <a href="#contact">聯絡我們</a>
-    </nav>
-    <div class="nav-cta">
-      <a href="#how" class="btn btn-ghost btn-sm">免費上架</a>
-      <a href="#feed" class="btn btn-primary btn-sm">開始尋寶</a>
-    </div>
-  </div>
-</header>
-
-<section class="hero" id="home">
-  <div class="wrap hero-grid">
-    <div>
-      <div class="eyebrow">OFFICIAL × C2C × RENT × FORUM</div>
-      <h1>ReTrust：讓每一件二手好物，被認真看見。</h1>
-      <p class="lead">正式驗證、社群買賣、快速上架與安心租借，從官方鑑定到社群交流，一個讓循環更簡單的信任平台。</p>
-      <div class="hero-ctas">
-        <a href="#feed" class="btn btn-primary">🔍 開始尋寶</a>
-        <a href="#how" class="btn btn-ghost">✨ 30 秒免費上架</a>
+  <header id="header">
+    <div class="wrap nav-inner">
+      <div class="logo"><span class="chop"><img src="/plans/logo/logoRetrust300.png" alt="ReTrust logo"></span>ReTrust
       </div>
-      <div class="hero-tags">
-        <span class="tag">官方鑑定保障</span>
-        <span class="tag">第三方價金保管</span>
-        <span class="tag">租賃免囤積</span>
-        <span class="tag">碳足跡認證</span>
-      </div>
-    </div>
-    <div class="hero-visual">
-      <div class="stamp-orb">
-        <div class="core"><span>認真</span><small>VERIFIED</small></div>
-      </div>
-      <div class="float-card c1">
-        <div class="ft-title">日系燈芯絨外套</div>
-        <div class="ft-sub">C2C・95 成新</div>
-        <div class="ft-price">NT$480</div>
-      </div>
-      <div class="float-card c2">
-        <div class="ft-title">官方認證單眼相機</div>
-        <div class="ft-sub">官方二手・已鑑定</div>
-        <div class="ft-price">NT$6,200</div>
-      </div>
-      <div class="float-card c3">
-        <div class="ft-title">露營帳篷（週租）</div>
-        <div class="ft-sub">出租・3 天方案</div>
-        <div class="ft-price">NT$390 / 週</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="manifesto" id="manifesto">
-  <div class="wrap">
-    <h2>「認真」不是口號，<br>是每件物品都要通過的關卡。</h2>
-    <p><span class="glyph">「</span>ReTrust 的中文諧音是「認真」——我們相信，二手交易值得被認真對待：認真鑑定物品狀況、認真保護買賣雙方的錢與信任、認真替地球多留一點資源。<span class="glyph">」</span></p>
-  </div>
-</section>
-
-<section class="pillars" id="pillars">
-  <div class="wrap">
-    <div class="section-head">
-      <div class="eyebrow">四大服務</div>
-      <h2>一個帳號，四種認真的方式。</h2>
-      <p>官方二手、C2C 市集、短租平台與論壇交流，ReTrust 將每一步服務都打造成透明、安心的循環體驗。</p>
-    </div>
-    <div class="pillar-grid">
-      <div class="pillar-card reveal">
-        <div class="pillar-num">01 · 官方二手</div>
-        <h3>官方鑑定嚴選</h3>
-        <p>由 ReTrust 團隊逐件驗貨、分級與拍攝，附上鑑定報告與品質保固，讓你買得安心。</p>
-        <div class="pill-link">瀏覽官方嚴選 →</div>
-      </div>
-      <div class="pillar-card reveal">
-        <div class="pillar-num">02 · C2C 二手</div>
-        <h3>鄰里尋寶市集</h3>
-        <p>個人賣家可快速上架，平台協助交易仲介與信用評價，買賣雙方都有更大信任感。</p>
-        <div class="pill-link">開始逛市集 →</div>
-      </div>
-      <div class="pillar-card reveal">
-        <div class="pillar-num">03 · 出租平台</div>
-        <h3>用租的，更輕盈</h3>
-        <p>露營裝備、正式禮服、電子產品都能短租，押金與租期清楚，歸還流程也簡單。</p>
-        <div class="pill-link">看看可租好物 →</div>
-      </div>
-      <div class="pillar-card reveal">
-        <div class="pillar-num">04 · 官方論壇</div>
-        <h3>認真聊物件</h3>
-        <p>保養心得、鑑定知識、二手攻略與公告都在論壇分享，打造更有溫度的循環社群。</p>
-        <div class="pill-link">加入討論 →</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="trust" id="trust">
-  <div class="wrap trust-grid">
-    <div>
-      <div class="eyebrow">認證機制</div>
-      <h2 style="font-size:2rem; margin:14px 0 26px;">分級透明，認真標示每一分狀況。</h2>
-      <div class="grade-row s">
-        <div class="grade-badge">S</div>
-        <div class="grade-text"><b>近全新 / 官方認證</b><span>官方團隊逐件檢查，附完整鑑定報告與保固。</span></div>
-      </div>
-      <div class="grade-row">
-        <div class="grade-badge">A</div>
-        <div class="grade-text"><b>95 成新以上</b><span>使用痕跡極輕微，賣家與平台雙重描述比對。</span></div>
-      </div>
-      <div class="grade-row">
-        <div class="grade-badge">B</div>
-        <div class="grade-text"><b>正常使用痕跡</b><span>功能完整、外觀有使用感，價格更划算。</span></div>
-      </div>
-    </div>
-    <div>
-      <div class="steps-list">
-        <div class="step-item reveal">
-          <div class="step-mark">01</div>
-          <div><h4>賣家誠實申報</h4><p>拍照、填寫商品狀況，系統會即時比對常見詐騙關鍵字。</p></div>
-        </div>
-        <div class="step-item reveal">
-          <div class="step-mark">02</div>
-          <div><h4>價金第三方保管</h4><p>買家付款先進入託管帳戶，確認收貨無誤後才撥款給賣家。</p></div>
-        </div>
-        <div class="step-item reveal">
-          <div class="step-mark">03</div>
-          <div><h4>官方件加蓋認證章</h4><p>官方二手商品經人工複驗後，才會顯示「ReTrust 認證」標章。</p></div>
-        </div>
-        <div class="step-item reveal">
-          <div class="step-mark">04</div>
-          <div><h4>爭議 7 天內處理</h4><p>若收到貨與描述不符，可在期限內申請退貨或協調。</p></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="feed" id="feed">
-  <div class="wrap">
-    <div class="feed-head">
-      <div class="section-head" style="margin-bottom:0;">
-        <div class="eyebrow">今日熱門</div>
-        <h2>大家都在看的好物</h2>
-      </div>
-      <div class="filter-row" style="margin-bottom:0;">
-        <span class="filter-chip active">全部</span>
-        <span class="filter-chip">官方認證</span>
-        <span class="filter-chip">C2C</span>
-        <span class="filter-chip">可租借</span>
-      </div>
-    </div>
-
-    <div class="item-grid">
-      <div class="item-card reveal">
-        <div class="item-thumb h1"><img src="/plans/images/product1-Photoroom.png" alt="日系撞色斜肩針織披肩短裙套裝"></div>
-        <div class="item-body">
-          <span class="item-badge badge-c2c">C2C</span>
-          <div class="item-title">日系撞色斜肩針織披肩短裙套裝</div>
-          <div class="item-sub">九成新，僅試穿過一次，無明顯瑕疵與起球。</div>
-          <div class="item-price">NT$480 <span class="old">$1,680</span></div>
-        </div>
-      </div>
-      <div class="item-card reveal">
-        <div class="item-thumb h3"><img src="/plans/images/product2-Photoroom.png" alt="銀色高階三鏡頭智慧型手機"></div>
-        <div class="item-body">
-          <span class="item-badge badge-official">官方認證</span>
-          <div class="item-title">銀色高階三鏡頭智慧型手機</div>
-          <div class="item-sub">八成新，外觀有些微使用細紋，功能完全正常。</div>
-          <div class="item-price">NT$6,200</div>
-        </div>
-      </div>
-      <div class="item-card reveal">
-        <div class="item-thumb h2"><img src="/plans/images/product3-Photoroom.png" alt="陶瓷手沖壺"></div>
-        <div class="item-body">
-          <span class="item-badge badge-c2c">C2C</span>
-          <div class="item-title">經典木紋四弦古典小提琴</div>
-          <div class="item-sub">九成五新，保養良好，琴身無刮傷且音色優美。</div>
-          <div class="item-price">NT$650</div>
-        </div>
-      </div>
-      <div class="item-card reveal">
-        <div class="item-thumb h4"><img src="/plans/images/product4-Photoroom.png" alt="露營帳篷"></div>
-        <div class="item-body">
-          <span class="item-badge badge-rent">可租借</span>
-          <div class="item-title">中國風扇形梅花流蘇手機吊飾</div>
-          <div class="item-sub">全新未使用，金屬配件光澤亮麗無氧化。</div>
-          <div class="item-price">NT$390 <span >/ 天</span></div>
-        </div>
-      </div>
-      <div class="item-card reveal">
-        <div class="item-thumb h2"><img src="/plans/images/product5-Photoroom.png" alt="禮服租借"></div>
-        <div class="item-body">
-          <span class="item-badge badge-rent">可租借</span>
-          <div class="item-title">復古玫瑰靜物油畫相框擺飾</div>
-          <div class="item-sub">九成新，木質邊框無碰撞痕跡，整體保存極佳。</div>
-          <div class="item-price">NT$890 <span>/ 天</span></div>
-        </div>
-      </div>
-    </div>
-    <div class="more-btn">
-      <a href="#contact" class="btn btn-ghost">查看更多好物</a>
-    </div>
-  </div>
-</section>
-
-<section class="how" id="how">
-  <div class="wrap">
-    <div class="section-head">
-      <div class="eyebrow">給賣家</div>
-      <h2>斷捨離，三步驟就認真上架。</h2>
-      <p>不管是隨手一件舊物、官方鑑定還是短租服務，流程都簡單快速，讓你輕鬆開始循環生活。</p>
-    </div>
-    <div class="how-grid">
-      <div class="how-card reveal">
-        <div class="hnum">STEP 01</div>
-        <h3>拍照，AI 幫你寫文案</h3>
-        <p>手機拍下商品，AI 自動去背、判斷分類並建議定價與描述。</p>
-      </div>
-      <div class="how-card reveal">
-        <div class="hnum">STEP 02</div>
-        <h3>選擇販售或出租</h3>
-        <p>同一件物品可以標記「出售」或「短租」，讓它用最有效率的方式流動。</p>
-      </div>
-      <div class="how-card reveal">
-        <div class="hnum">STEP 03</div>
-        <h3>超商寄件，安全收款</h3>
-        <p>買家下單後至超商刷條碼寄出，款項在對方確認收貨後才撥入帳戶。</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="forum" id="forum">
-  <div class="wrap">
-    <div class="section-head">
-      <div class="eyebrow">官方論壇</div>
-      <h2>一起分享、鑑定與租借經驗。</h2>
-      <p>從尋寶分享、鑑定知識到租借心得，論壇是 ReTrust 社群認真交流的地方。</p>
-    </div>
-    <div class="forum-grid">
-      <div class="thread-card reveal">
-        <div class="thread-top"><span class="thread-tag">鑑定知識</span></div>
-        <h4>底片相機怎麼分辨快門是否正常？</h4>
-        <p>整理了三個自己在家就能檢查的小技巧，附上官方鑑定師的補充回覆。</p>
-        <div class="thread-meta"><span>128 則回覆</span><span>官方已標記精華</span></div>
-      </div>
-      <div class="thread-card reveal">
-        <div class="thread-top"><span class="thread-tag">租賃心得</span></div>
-        <h4>租禮服參加婚禮，流程跟買新的差在哪？</h4>
-        <p>分享租借到歸還的完整體驗，包含清潔費用與臨時尺寸調整。</p>
-        <div class="thread-meta"><span>76 則回覆</span></div>
-      </div>
-      <div class="thread-card reveal">
-        <div class="thread-top"><span class="thread-tag">賣家經驗</span></div>
-        <h4>第一次上架就秒殺，我做對了什麼？</h4>
-        <p>從拍照角度、定價策略到回覆買家訊息的速度，整理成一份清單。</p>
-        <div class="thread-meta"><span>203 則回覆</span></div>
-      </div>
-      <div class="thread-card reveal">
-        <div class="thread-top"><span class="thread-tag">官方公告</span></div>
-        <h4>本季「認真好物」評選開放投稿</h4>
-        <p>分享你最有故事的二手物件，有機會登上首頁熱門尋寶牆。</p>
-        <div class="thread-meta"><span>官方置頂</span></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="proof" id="proof">
-  <div class="wrap">
-    <div class="counter-grid">
-      <div class="counter reveal"><div class="num mono">120,540 kg</div><div class="lbl">累積減少碳排放量</div></div>
-      <div class="counter reveal"><div class="num mono">85,200+</div><div class="lbl">成功找到新家的好物</div></div>
-      <div class="counter reveal"><div class="num mono">99.8%</div><div class="lbl">買賣雙方滿意度</div></div>
-    </div>
-    <div class="testi-grid">
-      <div class="testi reveal">
-        <p>「官方二手的鑑定報告讓我第一次敢買二手相機，實品跟描述完全一致。」</p>
-        <div class="who">@Kimi_Vintage・大學生</div>
-      </div>
-      <div class="testi reveal">
-        <p>「搬家清出來的衣服一個週末就賣完了，租禮服功能也幫我省下婚禮開銷。」</p>
-        <div class="who">Ray・平面設計師</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="final">
-  <div class="wrap">
-    <div class="eyebrow" style="justify-content:center; color:#CFE0D6;">今天，你想認真對待哪件物品？</div>
-    <h2>讓它展開新旅程，從 ReTrust 開始。</h2>
-    <p>買、賣、租、聊，在同一個信任平台完成循環生活。</p>
-    <div class="ctas">
-      <a href="#feed" class="btn btn-primary">📲 看好物推薦</a>
-      <a href="#how" class="btn btn-ghost">✨ 立即免費上架</a>
-    </div>
-  </div>
-</section>
-
-<section class="forum" id="faq">
-  <div class="wrap">
-    <div class="section-head">
-      <div class="eyebrow">FAQ</div>
-      <h2>常見問題一次說明。</h2>
-      <p>我們用簡單明瞭的方式說明官方二手、C2C 與出租服務的常見疑問。</p>
-    </div>
-    <div class="accordion">
-      <div class="accordion-item">
-        <button class="accordion-button" type="button">官方二手與 C2C 有何差異？</button>
-        <div class="accordion-panel"><p>官方二手由平台鑑定與出品，品質更可預測；C2C 則是個人賣家上架，平台提供交易擔保與仲介服務。</p></div>
-      </div>
-      <div class="accordion-item">
-        <button class="accordion-button" type="button">我要如何租借商品？</button>
-        <div class="accordion-panel"><p>在出租平台區選擇商品、確認租期與押金後，完成付款即可領取，使用後依規定歸還即可。</p></div>
-      </div>
-      <div class="accordion-item">
-        <button class="accordion-button" type="button">我的商品如何上架？</button>
-        <div class="accordion-panel"><p>拍照上傳、填寫描述與價格，平台將協助你快速上架並通知買家或租客。</p></div>
-      </div>
-      <div class="accordion-item">
-        <button class="accordion-button" type="button">退款與退貨如何處理？</button>
-        <div class="accordion-panel"><p>退款與退貨依據平台規範處理，若符合退貨條件，平台將先行保留款項並協助雙方完成後續流程。</p></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<footer id="contact">
-  <div class="wrap">
-    <div class="foot-grid">
-      <div>
-        <div class="logo" style="color: var(--paper); margin-bottom: 14px;"><span class="chop"><img src="/plans/logo/logoRetrust300.png" alt="ReTrust logo"></span>ReTrust</div>
-        <p style="color:#9FA298; font-size:.86rem; max-width:260px;">Re（Recycle / Re-use / Resell）+ Trust。認真對待每一件二手物品的鑑定與服務。</p>
-      </div>
-      <div>
-        <h5>平台服務</h5>
-        <a href="#pillars">官方二手</a>
-        <a href="#pillars">C2C 二手</a>
-        <a href="#pillars">出租平台</a>
-        <a href="#forum">官方論壇</a>
-      </div>
-      <div>
-        <h5>關於 ReTrust</h5>
+      <nav class="nav-links">
+        <a href="#home">首頁</a>
+        <a href="#manifesto">品牌理念</a>
+        <a href="#pillars">四大服務</a>
         <a href="#trust">認證機制</a>
+        <a href="#feed">好物推薦</a>
         <a href="#faq">常見問題</a>
-        <a href="#contact">服務條款</a>
-        <a href="#contact">隱私權政策</a>
+        <a href="#contact">聯絡我們</a>
+      </nav>
+      <div class="nav-cta">
+        <a href="#how" class="btn btn-ghost btn-sm">免費上架</a>
+        <a href="#feed" class="btn btn-primary btn-sm">開始尋寶</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero" id="home">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="eyebrow">OFFICIAL × C2C × RENT × FORUM</div>
+        <h1>ReTrust：讓每一件二手好物，被認真看見。</h1>
+        <p class="lead">正式驗證、社群買賣、快速上架與安心租借，從官方鑑定到社群交流，一個讓循環更簡單的信任平台。</p>
+        <div class="hero-ctas">
+          <a href="#feed" class="btn btn-primary">🔍 開始尋寶</a>
+          <a href="#how" class="btn btn-ghost">✨ 30 秒免費上架</a>
+        </div>
+        <div class="hero-tags">
+          <span class="tag">官方鑑定保障</span>
+          <span class="tag">第三方價金保管</span>
+          <span class="tag">租賃免囤積</span>
+          <span class="tag">碳足跡認證</span>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="stamp-orb">
+          <div class="core"><span>認真</span><small>VERIFIED</small></div>
+        </div>
+        <div class="float-card c1">
+
+          <div class="ft-title">日系燈芯絨外套</div>
+          <div class="ft-sub">C2C・95 成新</div>
+          <div class="ft-price">NT$480</div>
+        </div>
+        <div class="float-card c2">
+          <div class="ft-title">官方認證單眼相機</div>
+          <div class="ft-sub">官方二手・已鑑定</div>
+          <div class="ft-price">NT$6,200</div>
+        </div>
+        <div class="float-card c3">
+          <div class="ft-title">露營帳篷（週租）</div>
+          <div class="ft-sub">出租・3 天方案</div>
+          <div class="ft-price">NT$390 / 週</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="manifesto" id="manifesto">
+    <div class="wrap">
+      <h2>「認真」不是口號，<br>是每件物品都要通過的關卡。</h2>
+      <p><span class="glyph">「</span>ReTrust 的中文諧音是「認真」——我們相信，二手交易值得被認真對待：認真鑑定物品狀況、認真保護買賣雙方的錢與信任、認真替地球多留一點資源。<span
+          class="glyph">」</span></p>
+    </div>
+  </section>
+
+  <section class="pillars" id="pillars">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">四大服務</div>
+        <h2>一個帳號，四種認真的方式。</h2>
+        <p>官方二手、C2C 市集、短租平台與論壇交流，ReTrust 將每一步服務都打造成透明、安心的循環體驗。</p>
+      </div>
+      <div class="pillar-grid">
+        <div class="pillar-card reveal">
+          <div class="pillar-num">01 · 官方二手</div>
+          <h3>官方鑑定嚴選</h3>
+          <p>由 ReTrust 團隊逐件驗貨、分級與拍攝，附上鑑定報告與品質保固，讓你買得安心。</p>
+          <div class="pill-link">瀏覽官方嚴選 →</div>
+        </div>
+        <div class="pillar-card reveal">
+          <div class="pillar-num">02 · C2C 二手</div>
+          <h3>鄰里尋寶市集</h3>
+          <p>個人賣家可快速上架，平台協助交易仲介與信用評價，買賣雙方都有更大信任感。</p>
+          <div class="pill-link">開始逛市集 →</div>
+        </div>
+        <div class="pillar-card reveal">
+          <div class="pillar-num">03 · 出租平台</div>
+          <h3>用租的，更輕盈</h3>
+          <p>露營裝備、正式禮服、電子產品都能短租，押金與租期清楚，歸還流程也簡單。</p>
+          <div class="pill-link">看看可租好物 →</div>
+        </div>
+        <div class="pillar-card reveal">
+          <div class="pillar-num">04 · 官方論壇</div>
+          <h3>認真聊物件</h3>
+          <p>保養心得、鑑定知識、二手攻略與公告都在論壇分享，打造更有溫度的循環社群。</p>
+          <div class="pill-link">加入討論 →</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="trust" id="trust">
+    <div class="wrap trust-grid">
+      <div>
+        <div class="eyebrow">認證機制</div>
+        <h2 style="font-size:2rem; margin:14px 0 26px;">分級透明，認真標示每一分狀況。</h2>
+        <div class="grade-row s">
+          <div class="grade-badge">S</div>
+          <div class="grade-text"><b>近全新 / 官方認證</b><span>官方團隊逐件檢查，附完整鑑定報告與保固。</span></div>
+        </div>
+        <div class="grade-row">
+          <div class="grade-badge">A</div>
+          <div class="grade-text"><b>95 成新以上</b><span>使用痕跡極輕微，賣家與平台雙重描述比對。</span></div>
+        </div>
+        <div class="grade-row">
+          <div class="grade-badge">B</div>
+          <div class="grade-text"><b>正常使用痕跡</b><span>功能完整、外觀有使用感，價格更划算。</span></div>
+        </div>
       </div>
       <div>
-        <h5>與我們聯絡</h5>
-        <a href="mailto:hello@retrust.example">客服中心</a>
-        <a href="#">Instagram</a>
-        <a href="#">TikTok</a>
-        <a href="#">Threads</a>
+        <div class="steps-list">
+          <div class="step-item reveal">
+            <div class="step-mark">01</div>
+            <div>
+              <h4>賣家誠實申報</h4>
+              <p>拍照、填寫商品狀況，系統會即時比對常見詐騙關鍵字。</p>
+            </div>
+          </div>
+          <div class="step-item reveal">
+            <div class="step-mark">02</div>
+            <div>
+              <h4>價金第三方保管</h4>
+              <p>買家付款先進入託管帳戶，確認收貨無誤後才撥款給賣家。</p>
+            </div>
+          </div>
+          <div class="step-item reveal">
+            <div class="step-mark">03</div>
+            <div>
+              <h4>官方件加蓋認證章</h4>
+              <p>官方二手商品經人工複驗後，才會顯示「ReTrust 認證」標章。</p>
+            </div>
+          </div>
+          <div class="step-item reveal">
+            <div class="step-mark">04</div>
+            <div>
+              <h4>爭議 7 天內處理</h4>
+              <p>若收到貨與描述不符，可在期限內申請退貨或協調。</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="foot-bottom">
-      <span>© 2026 ReTrust. 認真，是我們對每一件二手物品的承諾。</span>
-      <span>Made for a circular life.</span>
+  </section>
+
+  <section class="feed" id="feed">
+    <div class="wrap">
+      <div class="feed-head">
+        <div class="section-head" style="margin-bottom:0;">
+          <div class="eyebrow">今日熱門</div>
+          <h2>大家都在看的好物</h2>
+        </div>
+        <div class="filter-row" style="margin-bottom:0;">
+          <span class="filter-chip active">全部</span>
+          <span class="filter-chip">官方認證</span>
+          <span class="filter-chip">C2C</span>
+          <span class="filter-chip">可租借</span>
+        </div>
+      </div>
+
+      <div class="item-grid">
+        <div class="item-card reveal">
+          <div class="item-thumb h1"><img src="/plans/images/product1-Photoroom.png" alt="日系撞色斜肩針織披肩短裙套裝"></div>
+          <div class="item-body">
+            <span class="item-badge badge-c2c">C2C</span>
+            <div class="item-title">日系撞色斜肩針織披肩短裙套裝</div>
+            <div class="item-sub">九成新，僅試穿過一次，無明顯瑕疵與起球。</div>
+            <div class="item-price">NT$480 <span class="old">$1,680</span></div>
+          </div>
+        </div>
+        <div class="item-card reveal">
+          <div class="item-thumb h3"><img src="/plans/images/product2-Photoroom.png" alt="銀色高階三鏡頭智慧型手機"></div>
+          <div class="item-body">
+            <span class="item-badge badge-official">官方認證</span>
+            <div class="item-title">銀色高階三鏡頭智慧型手機</div>
+            <div class="item-sub">八成新，外觀有些微使用細紋，功能完全正常。</div>
+            <div class="item-price">NT$6,200</div>
+          </div>
+        </div>
+        <div class="item-card reveal">
+          <div class="item-thumb h2"><img src="/plans/images/product3-Photoroom.png" alt="陶瓷手沖壺"></div>
+          <div class="item-body">
+            <span class="item-badge badge-c2c">C2C</span>
+            <div class="item-title">經典木紋四弦古典小提琴</div>
+            <div class="item-sub">九成五新，保養良好，琴身無刮傷且音色優美。</div>
+            <div class="item-price">NT$650</div>
+          </div>
+        </div>
+        <div class="item-card reveal">
+          <div class="item-thumb h4"><img src="/plans/images/product4-Photoroom.png" alt="露營帳篷"></div>
+          <div class="item-body">
+            <span class="item-badge badge-rent">可租借</span>
+            <div class="item-title">中國風扇形梅花流蘇手機吊飾</div>
+            <div class="item-sub">全新未使用，金屬配件光澤亮麗無氧化。</div>
+            <div class="item-price">NT$390 <span>/ 天</span></div>
+          </div>
+        </div>
+        <div class="item-card reveal">
+          <div class="item-thumb h2"><img src="/plans/images/product5-Photoroom.png" alt="禮服租借"></div>
+          <div class="item-body">
+            <span class="item-badge badge-rent">可租借</span>
+            <div class="item-title">復古玫瑰靜物油畫相框擺飾</div>
+            <div class="item-sub">九成新，木質邊框無碰撞痕跡，整體保存極佳。</div>
+            <div class="item-price">NT$890 <span>/ 天</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="more-btn">
+        <a href="#contact" class="btn btn-ghost">查看更多好物</a>
+      </div>
     </div>
-  </div>
-</footer>
+  </section>
 
-<div class="back-top" id="backTop">↑</div>
+  <section class="how" id="how">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">給賣家</div>
+        <h2>斷捨離，三步驟就認真上架。</h2>
+        <p>不管是隨手一件舊物、官方鑑定還是短租服務，流程都簡單快速，讓你輕鬆開始循環生活。</p>
+      </div>
+      <div class="how-grid">
+        <div class="how-card reveal">
+          <div class="hnum">STEP 01</div>
+          <h3>拍照，AI 幫你寫文案</h3>
+          <p>手機拍下商品，AI 自動去背、判斷分類並建議定價與描述。</p>
+        </div>
+        <div class="how-card reveal">
+          <div class="hnum">STEP 02</div>
+          <h3>選擇販售或出租</h3>
+          <p>同一件物品可以標記「出售」或「短租」，讓它用最有效率的方式流動。</p>
+        </div>
+        <div class="how-card reveal">
+          <div class="hnum">STEP 03</div>
+          <h3>超商寄件，安全收款</h3>
+          <p>買家下單後至超商刷條碼寄出，款項在對方確認收貨後才撥入帳戶。</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<script>
-  const header = document.getElementById('header');
-  let lastY = window.scrollY;
-  window.addEventListener('scroll', () => {
-    const y = window.scrollY;
-    header.classList.toggle('scrolled', y > 40);
-    if (y > lastY && y > 160) header.classList.add('hide'); else header.classList.remove('hide');
-    lastY = y;
-    document.getElementById('backTop').classList.toggle('show', y > 700);
-  });
+  <section class="forum" id="forum">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">官方論壇</div>
+        <h2>一起分享、鑑定與租借經驗。</h2>
+        <p>從尋寶分享、鑑定知識到租借心得，論壇是 ReTrust 社群認真交流的地方。</p>
+      </div>
+      <div class="forum-grid">
+        <div class="thread-card reveal">
+          <div class="thread-top"><span class="thread-tag">鑑定知識</span></div>
+          <h4>底片相機怎麼分辨快門是否正常？</h4>
+          <p>整理了三個自己在家就能檢查的小技巧，附上官方鑑定師的補充回覆。</p>
+          <div class="thread-meta"><span>128 則回覆</span><span>官方已標記精華</span></div>
+        </div>
+        <div class="thread-card reveal">
+          <div class="thread-top"><span class="thread-tag">租賃心得</span></div>
+          <h4>租禮服參加婚禮，流程跟買新的差在哪？</h4>
+          <p>分享租借到歸還的完整體驗，包含清潔費用與臨時尺寸調整。</p>
+          <div class="thread-meta"><span>76 則回覆</span></div>
+        </div>
+        <div class="thread-card reveal">
+          <div class="thread-top"><span class="thread-tag">賣家經驗</span></div>
+          <h4>第一次上架就秒殺，我做對了什麼？</h4>
+          <p>從拍照角度、定價策略到回覆買家訊息的速度，整理成一份清單。</p>
+          <div class="thread-meta"><span>203 則回覆</span></div>
+        </div>
+        <div class="thread-card reveal">
+          <div class="thread-top"><span class="thread-tag">官方公告</span></div>
+          <h4>本季「認真好物」評選開放投稿</h4>
+          <p>分享你最有故事的二手物件，有機會登上首頁熱門尋寶牆。</p>
+          <div class="thread-meta"><span>官方置頂</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
-  }, { threshold: 0.15 });
-  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-  document.getElementById('backTop').addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+  <section class="proof" id="proof">
+    <div class="wrap">
+      <div class="counter-grid">
+        <div class="counter reveal">
+          <div class="num mono">120,540 kg</div>
+          <div class="lbl">累積減少碳排放量</div>
+        </div>
+        <div class="counter reveal">
+          <div class="num mono">85,200+</div>
+          <div class="lbl">成功找到新家的好物</div>
+        </div>
+        <div class="counter reveal">
+          <div class="num mono">99.8%</div>
+          <div class="lbl">買賣雙方滿意度</div>
+        </div>
+      </div>
+      <div class="testi-grid">
+        <div class="testi reveal">
+          <p>「官方二手的鑑定報告讓我第一次敢買二手相機，實品跟描述完全一致。」</p>
+          <div class="who">@Kimi_Vintage・大學生</div>
+        </div>
+        <div class="testi reveal">
+          <p>「搬家清出來的衣服一個週末就賣完了，租禮服功能也幫我省下婚禮開銷。」</p>
+          <div class="who">Ray・平面設計師</div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  document.querySelectorAll('.accordion-button').forEach((button) => {
-    button.addEventListener('click', () => {
-      const panel = button.nextElementSibling;
-      const open = panel.classList.toggle('open');
-      button.classList.toggle('active', open);
+  <section class="final">
+    <div class="wrap">
+      <div class="eyebrow" style="justify-content:center; color:#CFE0D6;">今天，你想認真對待哪件物品？</div>
+      <h2>讓它展開新旅程，從 ReTrust 開始。</h2>
+      <p>買、賣、租、聊，在同一個信任平台完成循環生活。</p>
+      <div class="ctas">
+        <a href="#feed" class="btn btn-primary">📲 看好物推薦</a>
+        <a href="#how" class="btn btn-ghost">✨ 立即免費上架</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="forum" id="faq">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">FAQ</div>
+        <h2>常見問題一次說明。</h2>
+        <p>我們用簡單明瞭的方式說明官方二手、C2C 與出租服務的常見疑問。</p>
+      </div>
+      <div class="accordion">
+        <div class="accordion-item">
+          <button class="accordion-button" type="button">官方二手與 C2C 有何差異？</button>
+          <div class="accordion-panel">
+            <p>官方二手由平台鑑定與出品，品質更可預測；C2C 則是個人賣家上架，平台提供交易擔保與仲介服務。</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-button" type="button">我要如何租借商品？</button>
+          <div class="accordion-panel">
+            <p>在出租平台區選擇商品、確認租期與押金後，完成付款即可領取，使用後依規定歸還即可。</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-button" type="button">我的商品如何上架？</button>
+          <div class="accordion-panel">
+            <p>拍照上傳、填寫描述與價格，平台將協助你快速上架並通知買家或租客。</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-button" type="button">退款與退貨如何處理？</button>
+          <div class="accordion-panel">
+            <p>退款與退貨依據平台規範處理，若符合退貨條件，平台將先行保留款項並協助雙方完成後續流程。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer id="contact">
+    <div class="wrap">
+      <div class="foot-grid">
+        <div>
+          <div class="logo" style="color: var(--paper); margin-bottom: 14px;"><span class="chop"><img
+                src="/plans/logo/logoRetrust300.png" alt="ReTrust logo"></span>ReTrust</div>
+          <p style="color:#9FA298; font-size:.86rem; max-width:260px;">Re（Recycle / Re-use / Resell）+
+            Trust。認真對待每一件二手物品的鑑定與服務。</p>
+        </div>
+        <div>
+          <h5>平台服務</h5>
+          <a href="#pillars">官方二手</a>
+          <a href="#pillars">C2C 二手</a>
+          <a href="#pillars">出租平台</a>
+          <a href="#forum">官方論壇</a>
+        </div>
+        <div>
+          <h5>關於 ReTrust</h5>
+          <a href="#trust">認證機制</a>
+          <a href="#faq">常見問題</a>
+          <a href="#contact">服務條款</a>
+          <a href="#contact">隱私權政策</a>
+        </div>
+        <div>
+          <h5>與我們聯絡</h5>
+          <a href="mailto:hello@retrust.example">客服中心</a>
+          <a href="#">Instagram</a>
+          <a href="#">TikTok</a>
+          <a href="#">Threads</a>
+        </div>
+      </div>
+      <div class="foot-bottom">
+        <span>© 2026 ReTrust. 認真，是我們對每一件二手物品的承諾。</span>
+        <span>Made for a circular life.</span>
+      </div>
+    </div>
+  </footer>
+
+  <div class="back-top" id="backTop">↑</div>
+
+  <script>
+    const header = document.getElementById('header');
+    let lastY = window.scrollY;
+    window.addEventListener('scroll', () => {
+      const y = window.scrollY;
+      header.classList.toggle('scrolled', y > 40);
+      if (y > lastY && y > 160) header.classList.add('hide'); else header.classList.remove('hide');
+      lastY = y;
+      document.getElementById('backTop').classList.toggle('show', y > 700);
     });
-  });
-</script>
+
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+    document.getElementById('backTop').addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+
+    document.querySelectorAll('.accordion-button').forEach((button) => {
+      button.addEventListener('click', () => {
+        const panel = button.nextElementSibling;
+        const open = panel.classList.toggle('open');
+        button.classList.toggle('active', open);
+      });
+    });
+  </script>
 </body>
+
 </html>
