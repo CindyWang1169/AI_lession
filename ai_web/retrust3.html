@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SecondLife - 讓好物再次發光 | 質感二手交易平台</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome (for icons) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Noto Sans TC -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* 
+         * 設計風格：日系極簡、清新自然
+         * 主色調：#8FBC8F (柔和的薄荷綠，代表循環/環保)
+         * 輔助色：#FDFBF7 (米白底色，溫暖質感)
+         * 強調色：#FF9E80 (珊瑚橘，用於 CTA 按鈕)
+         */
+        
+        :root {
+            --primary-color: #79A379;
+            --secondary-color: #FDFBF7;
+            --accent-color: #FF8A65;
+            --text-dark: #333333;
+            --text-light: #777777;
+        }
+
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: var(--secondary-color);
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        /* Navbar Styling */
+        .navbar {
+            background-color: rgba(253, 251, 247, 0.95) !important;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            color: var(--primary-color) !important;
+            font-size: 1.5rem;
+            letter-spacing: 1px;
+        }
+
+        .nav-link {
+            font-weight: 500;
+            color: var(--text-dark) !important;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-color) !important;
+        }
+
+        .btn-accent {
+            background-color: var(--accent-color);
+            color: white;
+            border-radius: 25px;
+            padding: 8px 24px;
+            font-weight: 500;
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: none;
+        }
+
+        .btn-accent:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(255, 138, 101, 0.4);
+            color: white;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            padding: 120px 0 80px;
+            background: linear-gradient(135deg, #FDFBF7 0%, #E8F5E9 100%);
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            color: var(--text-dark);
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            margin-bottom: 2.5rem;
+            font-weight: 300;
+        }
+
+        /* 3D-like floating image effect */
+        .hero-img-wrap {
+            position: relative;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* Section Titles */
+        .section-title {
+            text-align: center;
+            font-weight: 700;
+            font-size: 2rem;
+            margin-bottom: 3rem;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background-color: var(--primary-color);
+            border-radius: 2px;
+        }
+
+        /* Feature Cards */
+        .feature-card {
+            background: white;
+            border-radius: 16px;
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.03);
+            transition: all 0.3s ease;
+            height: 100%;
+            border: 1px solid rgba(0,0,0,0.02);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(121, 163, 121, 0.15);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            background: rgba(121, 163, 121, 0.1);
+            width: 80px;
+            height: 80px;
+            line-height: 80px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        /* Product Cards */
+        .product-card {
+            border: none;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .product-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .product-img-wrap {
+            position: relative;
+            padding-top: 100%; /* 1:1 Aspect Ratio */
+            overflow: hidden;
+        }
+
+        .product-img-wrap img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .product-card:hover .product-img-wrap img {
+            transform: scale(1.08);
+        }
+        
+        .badge-status {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--accent-color);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            z-index: 2;
+        }
+
+        /* How it works */
+        .step-wrapper {
+            position: relative;
+            padding: 20px;
+        }
+        
+        .step-number {
+            font-size: 4rem;
+            font-weight: 700;
+            color: rgba(121, 163, 121, 0.15);
+            position: absolute;
+            top: -10px;
+            left: 10px;
+            z-index: 0;
+        }
+
+        .step-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #2C3E50;
+            color: white;
+            padding: 60px 0 20px;
+        }
+        
+        .footer-link {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-link:hover {
+            color: white;
+        }
+        
+        /* Utility classes */
+        .padding-y-lg { padding: 100px 0; }
+        .bg-light-gray { background-color: #F8F9FA; }
+        
+        /* Scroll reveal class (handled by jQuery) */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body data-bs-spy="scroll" data-bs-target="#navbarMain" data-bs-offset="100" tabindex="0">
+
+    <nav id="navbarMain" class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fa-solid fa-leaf me-2"></i>SecondLife
+            </a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link px-3" href="#features">平台特色</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link px-3" href="#categories">精選好物</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link px-3" href="#how-it-works">輕鬆上架</a>
+                    </li>
+                    <li class="nav-item ms-lg-3 mt-3 mt-lg-0">
+                        <a class="btn btn-accent px-4" href="#cta">免費註冊</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero-section" id="home">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-5 mb-lg-0 reveal active">
+                    <h1 class="hero-title">讓好物再次發光，<br>輕鬆斷捨離。</h1>
+                    <p class="hero-subtitle">買家尋寶、賣家變現。在這裡，每一件物品都能找到下一個懂它的主人。加入質感循環生活，從今天開始。</p>
+                    <div class="d-flex gap-3 flex-wrap">
+                        <button class="btn btn-accent btn-lg shadow-sm" onclick="scrollToSection('categories')">開始尋寶</button>
+                        <button class="btn btn-outline-secondary btn-lg rounded-pill px-4 bg-white" onclick="scrollToSection('how-it-works')">我要賣東西</button>
+                    </div>
+                    <div class="mt-4 pt-3 d-flex align-items-center">
+                        <div class="d-flex me-3">
+                            <!-- User Avatars Dummy -->
+                            <img src="https://placehold.co/40x40/79A379/FFF?text=A" class="rounded-circle border border-2 border-white" style="margin-right: -10px;" alt="user">
+                            <img src="https://placehold.co/40x40/FF8A65/FFF?text=B" class="rounded-circle border border-2 border-white" style="margin-right: -10px;" alt="user">
+                            <img src="https://placehold.co/40x40/5D4037/FFF?text=C" class="rounded-circle border border-2 border-white" alt="user">
+                        </div>
+                        <small class="text-muted fw-bold">已突破 50,000+ 人次加入</small>
+                    </div>
+                </div>
+                <div class="col-lg-6 text-center reveal active">
+                    <div class="hero-img-wrap">
+                        <!-- Abstract illustration placeholder representing eco/shopping -->
+                        <img src="https://placehold.co/600x500/E8F5E9/79A379?text=C2C+Marketplace+Illustration" class="img-fluid rounded-4 shadow-lg" alt="SecondLife App Interface">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="padding-y-lg bg-white" id="features">
+        <div class="container">
+            <h2 class="section-title reveal">為什麼選擇 SecondLife？</h2>
+            <div class="row g-4 mt-2">
+                <div class="col-md-4 reveal">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fa-solid fa-shield-halved"></i>
+                        </div>
+                        <h4 class="fw-bold mb-3">安心交易保障</h4>
+                        <p class="text-muted mb-0">買家確認收貨才撥款，實名認證與雙向評價機制，讓買賣雙方都安心無虞。</p>
+                    </div>
+                </div>
+                <div class="col-md-4 reveal">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fa-solid fa-camera-retro"></i>
+                        </div>
+                        <h4 class="fw-bold mb-3">極簡上架流程</h4>
+                        <p class="text-muted mb-0">手機拍照、AI 輔助生成商品描述，最快 30 秒即可完成上架，清空房間超有效率。</p>
+                    </div>
+                </div>
+                <div class="col-md-4 reveal">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fa-solid fa-truck-fast"></i>
+                        </div>
+                        <h4 class="fw-bold mb-3">多元物流支援</h4>
+                        <p class="text-muted mb-0">整合四大超商物流與面交選項，運費透明，隨時追蹤包裹進度。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="padding-y-lg bg-light-gray" id="categories">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-end mb-5 reveal">
+                <div>
+                    <h2 class="section-title mb-0 text-start">熱門尋寶區</h2>
+                    <p class="text-muted mt-2">精選優質二手好物，等你來發掘</p>
+                </div>
+                <a href="#" class="text-decoration-none fw-bold" style="color: var(--primary-color)">查看全部 <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+
+            <!-- Category Pills -->
+            <ul class="nav nav-pills mb-4 justify-content-center justify-content-md-start gap-2 reveal" id="pills-tab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active rounded-pill px-4" data-bs-toggle="pill" type="button" style="background-color: var(--primary-color); color:white;">全部</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link text-dark bg-white border rounded-pill px-4" data-bs-toggle="pill" type="button">底片相機</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link text-dark bg-white border rounded-pill px-4" data-bs-toggle="pill" type="button">復古服飾</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link text-dark bg-white border rounded-pill px-4" data-bs-toggle="pill" type="button">絕版藏書</button>
+                </li>
+            </ul>
+
+            <div class="row g-4">
+                <!-- Product Card 1 -->
+                <div class="col-6 col-md-4 col-lg-3 reveal">
+                    <div class="card product-card h-100">
+                        <div class="badge-status">幾乎全新</div>
+                        <div class="product-img-wrap">
+                            <img src="https://placehold.co/400x400/E0E0E0/999?text=Camera" alt="Olympus 底片相機">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold fs-6 text-truncate">Olympus mju II 底片相機</h5>
+                            <p class="card-text text-muted small mb-2">賣家：@vintage_lover</p>
+                            <div class="d-flex justify-content-between align-items-center mt-3">
+                                <span class="fw-bold fs-5" style="color: var(--accent-color)">NT$ 4,500</span>
+                                <button class="btn btn-sm btn-light rounded-circle"><i class="fa-regular fa-heart"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product Card 2 -->
+                <div class="col-6 col-md-4 col-lg-3 reveal">
+                    <div class="card product-card h-100">
+                        <div class="product-img-wrap">
+                            <img src="https://placehold.co/400x400/D7CCC8/999?text=Jacket" alt="古著牛仔外套">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold fs-6 text-truncate">Levi's 90s 古著牛仔外套</h5>
+                            <p class="card-text text-muted small mb-2">賣家：@denim_head</p>
+                            <div class="d-flex justify-content-between align-items-center mt-3">
+                                <span class="fw-bold fs-5" style="color: var(--accent-color)">NT$ 1,200</span>
+                                <button class="btn btn-sm btn-light rounded-circle"><i class="fa-regular fa-heart"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product Card 3 -->
+                <div class="col-6 col-md-4 col-lg-3 reveal">
+                    <div class="card product-card h-100">
+                        <div class="badge-status bg-secondary">輕微使用痕跡</div>
+                        <div class="product-img-wrap">
+                            <img src="https://placehold.co/400x400/B2DFDB/999?text=Speaker" alt="Marshall 藍牙喇叭">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold fs-6 text-truncate">Marshall Emberton 藍牙喇叭</h5>
+                            <p class="card-text text-muted small mb-2">賣家：@music_life</p>
+                            <div class="d-flex justify-content-between align-items-center mt-3">
+                                <span class="fw-bold fs-5" style="color: var(--accent-color)">NT$ 3,800</span>
+                                <button class="btn btn-sm btn-light rounded-circle"><i class="fa-regular fa-heart"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product Card 4 -->
+                <div class="col-6 col-md-4 col-lg-3 reveal">
+                    <div class="card product-card h-100">
+                        <div class="product-img-wrap">
+                            <img src="https://placehold.co/400x400/F5F5F5/999?text=Book" alt="絕版設計書">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold fs-6 text-truncate">原研哉《設計中的設計》絕版</h5>
+                            <p class="card-text text-muted small mb-2">賣家：@design_nerd</p>
+                            <div class="d-flex justify-content-between align-items-center mt-3">
+                                <span class="fw-bold fs-5" style="color: var(--accent-color)">NT$ 800</span>
+                                <button class="btn btn-sm btn-light rounded-circle"><i class="fa-regular fa-heart"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="padding-y-lg bg-white" id="how-it-works">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-5 mb-5 mb-lg-0 reveal">
+                    <h2 class="fw-bold mb-4" style="font-size: 2.5rem;">想清空房間？<br>三步驟輕鬆變現</h2>
+                    <p class="text-muted fs-5 mb-4">不需要長篇大論，用手機隨手拍，為舊愛尋找新歸宿就是這麼簡單。</p>
+                    <button class="btn btn-accent btn-lg" onclick="showAlert('即將開啟上架流程！')">立即免費上架</button>
+                </div>
+                <div class="col-lg-7">
+                    <div class="row g-4">
+                        <div class="col-md-12 reveal">
+                            <div class="step-wrapper d-flex align-items-center bg-light-gray rounded-4 p-4">
+                                <span class="step-number">1</span>
+                                <div class="step-content ms-md-4">
+                                    <h4 class="fw-bold mb-2">拍照上傳</h4>
+                                    <p class="text-muted mb-0">用手機拍下物品的多個角度，展現真實狀態。照片越清晰，賣出機率越高。</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 reveal">
+                            <div class="step-wrapper d-flex align-items-center bg-light-gray rounded-4 p-4">
+                                <span class="step-number">2</span>
+                                <div class="step-content ms-md-4">
+                                    <h4 class="fw-bold mb-2">AI 填寫描述與定價</h4>
+                                    <p class="text-muted mb-0">輸入關鍵字，我們的系統會建議合適的商品描述與市場行情價，為您省下思考時間。</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 reveal">
+                            <div class="step-wrapper d-flex align-items-center bg-light-gray rounded-4 p-4">
+                                <span class="step-number">3</span>
+                                <div class="step-content ms-md-4">
+                                    <h4 class="fw-bold mb-2">售出出貨，安全收款</h4>
+                                    <p class="text-muted mb-0">買家下單後，取得寄件編號至超商寄出。買家確認收貨後，款項將自動匯入您的錢包。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5" id="cta" style="background-color: var(--primary-color);">
+        <div class="container text-center reveal">
+            <h2 class="text-white fw-bold mb-4">準備好開始你的循環生活了嗎？</h2>
+            <p class="text-white-50 fs-5 mb-4">加入 SecondLife，讓每一次買賣都成為環保的實踐。</p>
+            <div class="d-flex justify-content-center gap-3">
+                <button class="btn btn-light btn-lg rounded-pill fw-bold text-dark px-5" onclick="showAlert('感謝註冊！功能即將上線。')">註冊帳號</button>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="row gy-4">
+                <div class="col-lg-4 col-md-6">
+                    <h5 class="fw-bold mb-3"><i class="fa-solid fa-leaf me-2 text-success"></i>SecondLife</h5>
+                    <p class="text-muted small">致力於打造最值得信賴的二手循環電商平台，推廣極簡與永續的生活方式。</p>
+                </div>
+                <div class="col-lg-2 col-md-6">
+                    <h6 class="fw-bold mb-3">關於平台</h6>
+                    <ul class="list-unstyled small">
+                        <li class="mb-2"><a href="#" class="footer-link">關於我們</a></li>
+                        <li class="mb-2"><a href="#" class="footer-link">使用條款</a></li>
+                        <li class="mb-2"><a href="#" class="footer-link">隱私權政策</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-6">
+                    <h6 class="fw-bold mb-3">會員服務</h6>
+                    <ul class="list-unstyled small">
+                        <li class="mb-2"><a href="#" class="footer-link">幫助中心</a></li>
+                        <li class="mb-2"><a href="#" class="footer-link">安心保障</a></li>
+                        <li class="mb-2"><a href="#" class="footer-link">聯絡客服</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <h6 class="fw-bold mb-3">追蹤我們</h6>
+                    <div class="d-flex gap-3">
+                        <a href="#" class="footer-link fs-4"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="footer-link fs-4"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="#" class="footer-link fs-4"><i class="fa-brands fa-line"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="mt-5 mb-4 border-secondary">
+            <div class="text-center text-muted small">
+                &copy; 2026 SecondLife 質感二手交易平台. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- jQuery (must be loaded before Bootstrap JS) -->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <!-- Bootstrap 5 Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        
+        // 為了符合規範，使用客製化的 Alert 替代原生的 alert()
+        function showAlert(message) {
+            // 建立一個簡單的 Bootstrap Toast 或 Modal 效果，這裡簡單用 DOM 動態生成
+            const alertBox = $(`
+                <div class="position-fixed top-0 start-50 translate-middle-x mt-4 p-3 rounded-3 shadow-lg" 
+                     style="background-color: var(--primary-color); color: white; z-index: 9999; display: none;">
+                    <strong>提示：</strong> ${message}
+                </div>
+            `);
+            $('body').append(alertBox);
+            alertBox.fadeIn(300).delay(2000).fadeOut(300, function() {
+                $(this).remove();
+            });
+        }
+
+        // 平滑滾動功能
+        function scrollToSection(id) {
+            const target = $('#' + id);
+            if (target.length) {
+                $('html, body').animate({
+                    scrollTop: target.offset().top - 80 // 減去 navbar 的高度
+                }, 800, 'swing');
+            }
+        }
+
+        $(document).ready(function() {
+            
+            // Navbar 在滾動時變更樣式 (增加陰影)
+            $(window).scroll(function() {
+                if ($(this).scrollTop() > 50) {
+                    $('.navbar').addClass('shadow-sm');
+                } else {
+                    $('.navbar').removeClass('shadow-sm');
+                }
+            });
+
+            // 平滑滾動給 Navbar 上的連結
+            $('.nav-link, .navbar-brand').on('click', function(e) {
+                if (this.hash !== "") {
+                    e.preventDefault();
+                    const hash = this.hash;
+                    $('html, body').animate({
+                        scrollTop: $(hash).offset().top - 80
+                    }, 800, 'swing');
+                    
+                    // 在手機版點擊後收起選單
+                    if ($('.navbar-toggler').is(':visible')) {
+                        $('.navbar-collapse').collapse('hide');
+                    }
+                }
+            });
+
+            // 滾動顯示動畫 (Scroll Reveal)
+            function reveal() {
+                var reveals = $('.reveal');
+                for (var i = 0; i < reveals.length; i++) {
+                    var windowHeight = $(window).height();
+                    var elementTop = $(reveals[i]).offset().top - $(window).scrollTop();
+                    var elementVisible = 100;
+
+                    if (elementTop < windowHeight - elementVisible) {
+                        $(reveals[i]).addClass('active');
+                    }
+                }
+            }
+
+            // 初始化與綁定事件
+            $(window).scroll(reveal);
+            reveal(); // 載入時觸發一次
+
+            // 產品卡片愛心點擊特效 (微互動)
+            $('.fa-heart').on('click', function(e) {
+                e.stopPropagation(); // 防止觸發卡片的點擊
+                $(this).toggleClass('fa-regular fa-solid').css('color', function(_, currentColor) {
+                    return currentColor === 'rgb(255, 138, 101)' ? '' : 'var(--accent-color)';
+                });
+                
+                if ($(this).hasClass('fa-solid')) {
+                    // 加入小震動動畫
+                    $(this).css('transform', 'scale(1.2)');
+                    setTimeout(() => $(this).css('transform', 'scale(1)'), 200);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+

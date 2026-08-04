@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ReTrust | 一頁式二手平台</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-7PHdFPTFhFQ5pITyN8aV1cSdNv6Z3x6/ILU8S7E3Pqrd1VrQwqMZ0n6vJegL7Z9f" crossorigin="anonymous" />
+  <style>
+    :root {
+      color-scheme: light;
+      --brand-green: #2d5a27;
+      --brand-sand: #f6f1e8;
+      --brand-amber: #de6f43;
+      --brand-dark: #222222;
+      --brand-soft: #efebe0;
+    }
+
+    body {
+      font-family: "Noto Sans TC", "Segoe UI", Arial, sans-serif;
+      background: var(--brand-sand);
+      color: var(--brand-dark);
+      line-height: 1.6;
+    }
+
+    .navbar {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+    }
+
+    .hero {
+      min-height: 90vh;
+      background: linear-gradient(135deg, rgba(45, 90, 39, 0.95), rgba(246, 241, 232, 0.95));
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      padding: 4rem 0;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      letter-spacing: -0.04em;
+    }
+
+    .btn-brand {
+      background: var(--brand-green);
+      border-color: var(--brand-green);
+    }
+
+    .btn-brand:hover {
+      background: #24481f;
+      border-color: #24481f;
+    }
+
+    .section-card {
+      background: #ffffff;
+      border: 1px solid #e7e2d7;
+      border-radius: 20px;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.05);
+    }
+
+    .feature-icon {
+      width: 56px;
+      height: 56px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 16px;
+      background: var(--brand-soft);
+      color: var(--brand-green);
+      font-size: 1.4rem;
+    }
+
+    .section-title {
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      color: #7d7d7d;
+      margin-bottom: 0.8rem;
+    }
+
+    .section-heading {
+      font-weight: 700;
+    }
+
+    .stat-box {
+      background: #ffffff;
+      border: 1px solid #e8e2d8;
+      border-radius: 18px;
+      padding: 1.6rem;
+    }
+
+    .stat-number {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--brand-green);
+    }
+
+    .faq-button {
+      width: 100%;
+      text-align: left;
+      border-radius: 16px;
+      border: 1px solid #e8e2d8;
+      background: #ffffff;
+      color: var(--brand-dark);
+      padding: 1rem 1.2rem;
+      font-weight: 600;
+    }
+
+    .faq-button:hover {
+      background: var(--brand-soft);
+    }
+
+    footer {
+      background: #ffffff;
+      border-top: 1px solid #e8e2d8;
+      padding: 3rem 0;
+    }
+
+    .border-soft {
+      border: 1px solid #e7e2d7;
+    }
+
+    .card-hover:hover {
+      transform: translateY(-6px);
+      transition: transform 0.25s ease;
+    }
+
+    .scroll-top {
+      position: fixed;
+      right: 1.5rem;
+      bottom: 1.5rem;
+      z-index: 1000;
+      border-radius: 50%;
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      background: var(--brand-green);
+      color: #ffffff;
+      border: none;
+      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    .scroll-top:hover {
+      background: #24481f;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light sticky-top shadow-sm">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="#top">ReTrust</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto align-items-lg-center">
+          <li class="nav-item"><a class="nav-link" href="#home">首頁</a></li>
+          <li class="nav-item"><a class="nav-link" href="#brand">品牌理念</a></li>
+          <li class="nav-item"><a class="nav-link" href="#services">服務</a></li>
+          <li class="nav-item"><a class="nav-link" href="#how-it-works">流程</a></li>
+          <li class="nav-item"><a class="nav-link" href="#items">好物推薦</a></li>
+          <li class="nav-item"><a class="nav-link" href="#faq">常見問題</a></li>
+          <li class="nav-item"><a class="nav-link btn btn-brand text-white ms-3" href="#contact">聯絡我們</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <main id="top">
+    <section id="home" class="hero">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-7 text-white">
+            <span class="section-title">官方二手 x C2C x 出租 x 論壇</span>
+            <h1 class="section-heading">ReTrust：讓每一件二手好物，被認真看見。</h1>
+            <p class="fs-5 mt-4">正式驗證 x 安全交易 x 快速上架，一個懂你的循環平台。官方鑑定、社群買賣、出租服務，從此二手也能更放心。</p>
+            <div class="mt-4">
+              <a class="btn btn-brand btn-lg me-3" href="#items">探索官方二手</a>
+              <a class="btn btn-outline-light btn-lg" href="#how-it-works">我要上架</a>
+            </div>
+          </div>
+          <div class="col-lg-5 mt-5 mt-lg-0">
+            <div class="section-card p-4">
+              <div class="text-center">
+                <p class="h5 mb-3">ReTrust 數據快覽</p>
+                <div class="row g-3 text-start">
+                  <div class="col-12 stat-box">
+                    <div class="stat-number" data-count="120540">0</div>
+                    <p class="mb-0 text-muted">累積減少碳排放 (kg)</p>
+                  </div>
+                  <div class="col-12 stat-box">
+                    <div class="stat-number" data-count="85200">0</div>
+                    <p class="mb-0 text-muted">成功找到新家的好物</p>
+                  </div>
+                  <div class="col-12 stat-box">
+                    <div class="stat-number">99.8%</div>
+                    <p class="mb-0 text-muted">買賣雙方滿意度</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="brand" class="py-5">
+      <div class="container">
+        <div class="row g-4 align-items-center">
+          <div class="col-lg-5">
+            <div class="section-title">品牌理念</div>
+            <h2 class="section-heading">ReTrust：Recycle、Re-use、Resell，信任從鑑定開始。</h2>
+            <p class="text-muted">ReTrust 以「認真」為核心，為每一件二手好物提供嚴格審核、透明資料與安心保障。從官方二手、C2C、到出租平台，讓循環生活變得更簡單、值得信賴。</p>
+          </div>
+          <div class="col-lg-7">
+            <div class="row g-3">
+              <div class="col-md-4">
+                <div class="section-card p-4 h-100">
+                  <div class="feature-icon mb-3">♻️</div>
+                  <h5>Recycle</h5>
+                  <p class="mb-0 text-muted">延續物品生命，讓使用價值在新主人手中繼續流轉。</p>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="section-card p-4 h-100">
+                  <div class="feature-icon mb-3">🔄</div>
+                  <h5>Re-use</h5>
+                  <p class="mb-0 text-muted">重複使用，讓二手不再是次品，而是高質感的新選擇。</p>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="section-card p-4 h-100">
+                  <div class="feature-icon mb-3">🤝</div>
+                  <h5>Resell</h5>
+                  <p class="mb-0 text-muted">安全轉手、安心交易，讓信任成為每次買賣的核心。</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="services" class="py-5 bg-light">
+      <div class="container">
+        <div class="text-center mb-5">
+          <span class="section-title">主要功能</span>
+          <h2 class="section-heading">官方二手、C2C、出租、論壇，一頁掌握。</h2>
+        </div>
+        <div class="row g-4">
+          <div class="col-md-6 col-lg-3">
+            <div class="section-card p-4 h-100 card-hover">
+              <div class="feature-icon mb-3">🏷️</div>
+              <h5>官方二手</h5>
+              <p class="text-muted">官方鑑定商品，品質可追溯，安心保固，讓購買更放心。</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <div class="section-card p-4 h-100 card-hover">
+              <div class="feature-icon mb-3">🛍️</div>
+              <h5>C2C 二手</h5>
+              <p class="text-muted">個人賣家上架，自由買賣，平台仲介交易，信任加倍放大。</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <div class="section-card p-4 h-100 card-hover">
+              <div class="feature-icon mb-3">⏳</div>
+              <h5>出租平台</h5>
+              <p class="text-muted">短期租借好物，押金與租期透明，讓你少買、多用、更環保。</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <div class="section-card p-4 h-100 card-hover">
+              <div class="feature-icon mb-3">💬</div>
+              <h5>官方論壇</h5>
+              <p class="text-muted">分享尋寶心得、鑑定討論、租借經驗與官方公告。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-5">
+      <div class="container">
+        <div class="row g-4 align-items-center">
+          <div class="col-lg-5">
+            <div class="section-title">服務內容</div>
+            <h2 class="section-heading">官方二手、C2C、出租，一鍵查看服務差異。</h2>
+            <p class="text-muted">使用方便的服務切換，讓你快速找到最適合的購買、販售與租借方式。</p>
+          </div>
+          <div class="col-lg-7">
+            <ul class="nav nav-pills mb-3" id="service-tabs" role="tablist">
+              <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="official-tab" data-bs-toggle="pill" data-bs-target="#official" type="button" role="tab">官方二手</button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" id="c2c-tab" data-bs-toggle="pill" data-bs-target="#c2c" type="button" role="tab">C2C 二手</button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" id="rent-tab" data-bs-toggle="pill" data-bs-target="#rent" type="button" role="tab">出租平台</button>
+              </li>
+            </ul>
+            <div class="tab-content">
+              <div class="tab-pane fade show active section-card p-4" id="official" role="tabpanel" aria-labelledby="official-tab">
+                <h5>官方鑑定、安心保障</h5>
+                <p class="text-muted">由平台專業團隊把關成色與真偽，官方商品提供質量承諾與透明流程，買家下單更安心。</p>
+                <ul class="list-unstyled text-muted">
+                  <li>• 官方出品、嚴格審核</li>
+                  <li>• 透明成色等級與驗證報告</li>
+                  <li>• 平台金流與客服保障</li>
+                </ul>
+              </div>
+              <div class="tab-pane fade section-card p-4" id="c2c" role="tabpanel" aria-labelledby="c2c-tab">
+                <h5>個人上架、社群交易</h5>
+                <p class="text-muted">支援個人賣家快速刊登商品，平台擔任仲介角色，讓買賣雙方都獲得信任與協助。</p>
+                <ul class="list-unstyled text-muted">
+                  <li>• 立即上架，配對買家</li>
+                  <li>• 交易仲介、付款安心</li>
+                  <li>• 評價機制與社群互動</li>
+                </ul>
+              </div>
+              <div class="tab-pane fade section-card p-4" id="rent" role="tabpanel" aria-labelledby="rent-tab">
+                <h5>短期租借，減少浪費</h5>
+                <p class="text-muted">透過出租平台租借必需品，省錢又減少囤積，押金與租期清楚，歸還流程簡單。</p>
+                <ul class="list-unstyled text-muted">
+                  <li>• 商品出租與押金機制</li>
+                  <li>• 租期選擇與提醒通知</li>
+                  <li>• 安全歸還與互動評價</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="how-it-works" class="py-5 bg-light">
+      <div class="container">
+        <div class="text-center mb-5">
+          <span class="section-title">操作流程</span>
+          <h2 class="section-heading">三步驟，讓買賣租借更簡單。</h2>
+          <p class="text-muted">速上架 / 快尋寶 / 安心出租，讓你一步步體驗 ReTrust 的循環生活。</p>
+        </div>
+        <div class="row g-4">
+          <div class="col-md-4">
+            <div class="section-card p-4 h-100 card-hover">
+              <div class="feature-icon mb-3">📸</div>
+              <h5>賣家上架</h5>
+              <p class="text-muted">拍照上傳商品，填寫簡單描述，平台協助快速審核。</p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="section-card p-4 h-100 card-hover">
+              <div class="feature-icon mb-3">🔎</div>
+              <h5>買家尋寶</h5>
+              <p class="text-muted">瀏覽官方與 C2C 商品，依成色與類別快速篩選。</p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="section-card p-4 h-100 card-hover">
+              <div class="feature-icon mb-3">✅</div>
+              <h5>交易安心</h5>
+              <p class="text-muted">平台金流與客服把關，完成交易後安全交付，租借歸還流程清楚。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="items" class="py-5">
+      <div class="container">
+        <div class="text-center mb-5">
+          <span class="section-title">熱門推薦</span>
+          <h2 class="section-heading">大家都在關注的好物。</h2>
+          <p class="text-muted">示範商品卡片展示官方、C2C 與出租選項，讓你快速進入循環生活。</p>
+        </div>
+        <div class="row g-4">
+          <div class="col-md-6 col-lg-4">
+            <div class="card section-card h-100 card-hover">
+              <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=800&q=80" class="card-img-top" alt="復古牛仔外套" />
+              <div class="card-body">
+                <span class="badge bg-success mb-2">官方二手</span>
+                <h5 class="card-title">日系復古牛仔外套</h5>
+                <p class="card-text text-muted">成色 9 成新，NT$480，比新品更有故事。</p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <span class="fw-bold text-brand">NT$480</span>
+                  <a href="#contact" class="btn btn-outline-secondary btn-sm">立即詢問</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="card section-card h-100 card-hover">
+              <img src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4?auto=format&fit=crop&w=800&q=80" class="card-img-top" alt="北歐咖啡壺" />
+              <div class="card-body">
+                <span class="badge bg-warning text-dark mb-2">C2C 二手</span>
+                <h5 class="card-title">北歐風陶瓷手沖壺</h5>
+                <p class="card-text text-muted">僅此一件，NT$650，質感生活必備。</p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <span class="fw-bold text-brand">NT$650</span>
+                  <a href="#contact" class="btn btn-outline-secondary btn-sm">我要上架</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="card section-card h-100 card-hover">
+              <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=800&q=80" class="card-img-top" alt="租借相機" />
+              <div class="card-body">
+                <span class="badge bg-info text-dark mb-2">出租平台</span>
+                <h5 class="card-title">輕巧單眼相機出租</h5>
+                <p class="card-text text-muted">日租 NT$350，外出拍照更自由無負擔。</p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <span class="fw-bold text-brand">NT$350 / 日</span>
+                  <a href="#contact" class="btn btn-outline-secondary btn-sm">立即租借</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-5 bg-light">
+      <div class="container">
+        <div class="text-center mb-5">
+          <span class="section-title">信任優勢</span>
+          <h2 class="section-heading">平台特色與安全保障</h2>
+        </div>
+        <div class="row g-4">
+          <div class="col-md-3">
+            <div class="section-card p-4 h-100 text-center">
+              <div class="feature-icon mx-auto mb-3">🛡️</div>
+              <h5>官方鑑定</h5>
+              <p class="text-muted">提供成色報告與真偽審核，讓交易更透明。</p>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="section-card p-4 h-100 text-center">
+              <div class="feature-icon mx-auto mb-3">💰</div>
+              <h5>安心金流</h5>
+              <p class="text-muted">平台擔保付款，完成交易後再釋放款項。</p>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="section-card p-4 h-100 text-center">
+              <div class="feature-icon mx-auto mb-3">⚡</div>
+              <h5>快速上架</h5>
+              <p class="text-muted">三步驟上架流程，讓你立即開始變現。</p>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="section-card p-4 h-100 text-center">
+              <div class="feature-icon mx-auto mb-3">⭐</div>
+              <h5>會員評價</h5>
+              <p class="text-muted">真實評論與成交記錄，建立社群信任。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="forum" class="py-5">
+      <div class="container">
+        <div class="row g-4 align-items-center">
+          <div class="col-lg-6">
+            <span class="section-title">官方論壇</span>
+            <h2 class="section-heading">一起分享、鑑定與租借經驗。</h2>
+            <p class="text-muted">論壇是 ReTrust 的交流核心，包含尋寶分享、鑑定諮詢、租借心得與平台公告，讓每一位使用者都能成為更有心得的循環生活家。</p>
+            <ul class="text-muted">
+              <li>• 尋寶分享：好物故事與搭配靈感</li>
+              <li>• 鑑定諮詢：成色判斷、真假鑑別</li>
+              <li>• 租借心得：使用建議與歸還貼士</li>
+              <li>• 平台公告：活動、優惠與新上架</li>
+            </ul>
+          </div>
+          <div class="col-lg-6">
+            <div class="section-card p-4">
+              <div class="mb-3">
+                <span class="badge bg-success me-2">社群</span>
+                <span class="badge bg-secondary">討論</span>
+              </div>
+              <div class="border-soft rounded-4 p-4 bg-white">
+                <h5>熱門討論</h5>
+                <p class="mb-1"><strong>「成色 A 的復古包包值不值得買？」</strong></p>
+                <p class="text-muted mb-0">會員分享真實使用心得與鑑定建議。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" class="py-5 bg-light">
+      <div class="container">
+        <div class="text-center mb-5">
+          <span class="section-title">FAQ</span>
+          <h2 class="section-heading">常見問題一次說明。</h2>
+          <p class="text-muted">使用 Accordion 形式，讓你快速找到關鍵答案。</p>
+        </div>
+        <div class="row g-4">
+          <div class="col-lg-6">
+            <div class="accordion" id="faqAccordion">
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="faqOneHeader">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqOne" aria-expanded="false" aria-controls="faqOne">官方二手與 C2C 有何差異？</button>
+                </h2>
+                <div id="faqOne" class="accordion-collapse collapse" aria-labelledby="faqOneHeader" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">官方二手由平台鑑定與出品，品質更可預測；C2C 則是個人賣家上架，平台提供交易擔保與仲介服務。</div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="faqTwoHeader">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqTwo" aria-expanded="false" aria-controls="faqTwo">我要如何租借商品？</button>
+                </h2>
+                <div id="faqTwo" class="accordion-collapse collapse" aria-labelledby="faqTwoHeader" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">在出租平台區選擇商品、確認租期與押金後，完成付款即可領取，使用後依規定歸還即可。</div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="faqThreeHeader">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqThree" aria-expanded="false" aria-controls="faqThree">我的商品如何上架？</button>
+                </h2>
+                <div id="faqThree" class="accordion-collapse collapse" aria-labelledby="faqThreeHeader" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">拍照上傳、填寫描述與價格，平台將協助你快速上架並通知買家或租客。</div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="faqFourHeader">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqFour" aria-expanded="false" aria-controls="faqFour">退款與退貨如何處理？</button>
+                </h2>
+                <div id="faqFour" class="accordion-collapse collapse" aria-labelledby="faqFourHeader" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">退款與退貨依據平台規範處理，若符合退貨條件，平台將先行保留款項並協助雙方完成後續流程。</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="section-card p-4 h-100">
+              <h5>還有其他問題嗎？</h5>
+              <p class="text-muted">如果你有進階需求，歡迎透過聯絡表單或 Email 與我們聯繫，ReTrust 將提供專人回應。</p>
+              <div class="mt-4">
+                <div class="mb-3">
+                  <label class="form-label">Email</label>
+                  <input type="email" class="form-control" placeholder="請輸入你的聯絡信箱" />
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">留言內容</label>
+                  <textarea class="form-control" rows="4" placeholder="告訴我們你的需求或問題"></textarea>
+                </div>
+                <button class="btn btn-brand text-white">送出詢問</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="contact">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-6">
+          <h4 class="mb-3">現在就加入 ReTrust</h4>
+          <p class="text-muted">讓二手成為新選擇，讓每一次買賣、出租與交流都更有信任感。</p>
+        </div>
+        <div class="col-md-6 text-md-end">
+          <p class="mb-1">Email：hello@retrust.example</p>
+          <p class="mb-0">社群：@retrust.tw</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <button class="scroll-top" id="scrollTop" aria-label="回到頂端">↑</button>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-4FahrxqGv2uXYFWtBnTFg+xJZZQzSakalQN2yp3DJo8vUu7Px6kXKZ1zj0T6Cp6B" crossorigin="anonymous"></script>
+  <script>
+    $(function () {
+      $('a.nav-link, a.btn').on('click', function (event) {
+        var target = $(this).attr('href');
+        if (target && target.startsWith('#')) {
+          var $target = $(target);
+          if ($target.length) {
+            event.preventDefault();
+            $('html, body').animate({ scrollTop: $target.offset().top - 80 }, 600);
+          }
+        }
+      });
+
+      var $countElements = $('[data-count]');
+      $countElements.each(function () {
+        var $this = $(this);
+        var countTo = parseInt($this.data('count'), 10);
+        $({ countNum: 0 }).animate({ countNum: countTo }, {
+          duration: 1800,
+          easing: 'swing',
+          step: function () {
+            $this.text(Math.floor(this.countNum).toLocaleString());
+          },
+          complete: function () {
+            $this.text(countTo.toLocaleString());
+          }
+        });
+      });
+
+      $('#scrollTop').on('click', function () {
+        $('html, body').animate({ scrollTop: 0 }, 600);
+      });
+    });
+  </script>
+</body>
+</html>
