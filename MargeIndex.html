@@ -138,23 +138,35 @@
     .filter-chip { font-size: .82rem; font-weight: 600; padding: 8px 16px; border-radius: 999px; border: 1px solid var(--line); background: var(--card); color: var(--ink-soft); cursor: default; }
     .filter-chip.active { background: var(--ink); color: var(--paper); border-color: var(--ink); }
 
-    .item-grid { columns: 4 220px; column-gap: 20px; }
-    @media(max-width: 960px) { .item-grid { columns: 2 180px; } }
-    @media(max-width: 560px) { .item-grid { columns: 1; } }
-    .item-card { break-inside: avoid; margin-bottom: 20px; background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; transition: transform .3s cubic-bezier(.2,.9,.3,1), box-shadow .3s ease; }
-    .item-card:hover { transform: translateY(-5px) scale(1.015); box-shadow: 0 18px 32px rgba(32,36,30,.12); }
-    .item-thumb { width: 100%; display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; color: var(--jade-deep); font-size: .85rem; letter-spacing: .05em; background: linear-gradient(135deg,#E4E0D0,#D6D2BE); overflow: hidden; }
+    .item-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 20px;
+    }
+    @media(max-width: 960px) { .item-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    @media(max-width: 760px) { .item-grid { grid-template-columns: 1fr; } }
+
+    .item-card { break-inside: avoid; margin-bottom: 20px; background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; transition: transform .3s cubic-bezier(.2,.9,.3,1), box-shadow .3s ease, border-color .3s ease; }
+    .item-card:hover { transform: translateY(-5px) scale(1.02); box-shadow: 0 22px 38px rgba(32,36,30,.18); border-color: rgba(63,99,85,.18); }
+
+    .item-thumb { width: 100%; height: 200px; display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; color: var(--jade-deep); font-size: .85rem; letter-spacing: .05em; background: linear-gradient(135deg,#E4E0D0,#D6D2BE); overflow: hidden; }
     .item-thumb img { width: 100%; height: 100%; object-fit: cover; }
-    .item-thumb.h1 { height: 200px; } .item-thumb.h2 { height: 150px; } .item-thumb.h3 { height: 240px; } .item-thumb.h4 { height: 170px; }
-    .item-body { padding: 16px 16px 18px; }
-    .item-badge { display: inline-block; font-size: .68rem; font-weight: 700; padding: 3px 10px; border-radius: 999px; margin-bottom: 8px; }
-    .badge-official { background: var(--jade); color: #fff; }
-    .badge-c2c { background: var(--paper-deep); color: var(--ink-soft); border: 1px solid var(--line); }
-    .badge-rent { background: var(--stamp); color: #fff; }
-    .item-title { font-weight: 700; font-size: .92rem; margin-bottom: 4px; }
-    .item-sub { font-size: .78rem; color: var(--ink-soft); margin-bottom: 10px; }
-    .item-price { font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: .98rem; }
-    .item-price .old { color: #A8A79A; text-decoration: line-through; font-weight: 400; margin-left: 8px; font-size: .82rem; }
+    .item-thumb.h1,
+    .item-thumb.h2,
+    .item-thumb.h3,
+    .item-thumb.h4 { height: 200px; }
+
+    .item-body { padding: 22px; display: flex; flex-direction: column; gap: 12px; }
+    .item-badge { display: inline-flex; align-items: center; justify-content: center; align-self: flex-start; font-size: .78rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; border-radius: 999px; padding: 8px 14px; border: 1px solid transparent; }
+    .badge-c2c { background: rgba(63,99,85,.08); color: var(--jade-deep); border-color: rgba(63,99,85,.16); }
+    .badge-official { background: rgba(193,68,45,.1); color: var(--stamp); border-color: rgba(193,68,45,.2); }
+    .badge-rent { background: rgba(44,70,60,.1); color: var(--jade); border-color: rgba(44,70,60,.16); }
+    .item-title { font-size: 1rem; font-weight: 700; color: var(--ink); line-height: 1.35; }
+    .item-sub { color: var(--ink-soft); font-size: .92rem; line-height: 1.6; min-height: 3.2em; }
+    .item-price { font-weight: 800; color: var(--jade-deep); font-size: 1rem; margin-top: auto; }
+    .item-price .old { font-family: 'IBM Plex Mono', monospace; font-size: .8rem; color: var(--ink-soft); margin-left: 10px; text-decoration: line-through; }
+
+    .feed .more-btn { text-align: center; margin-top: 36px; }
 
     .how { background: var(--ink); color: var(--paper); padding: 110px 0; }
     .how .section-head h2, .how .section-head p { color: var(--paper); }
@@ -228,7 +240,7 @@
 
 <header id="header">
   <div class="wrap nav-inner">
-    <div class="logo"><span class="chop"><img src="/plans/logoRetrust.png" alt="ReTrust logo"></span>ReTrust</div>
+    <div class="logo"><span class="chop"><img src="/plans/logo/logoRetrust300.png" alt="ReTrust logo"></span>ReTrust</div>
     <nav class="nav-links">
       <a href="#home">首頁</a>
       <a href="#manifesto">品牌理念</a>
@@ -389,8 +401,8 @@
         <div class="item-thumb h1"><img src="/plans/images/product1.jpg" alt="燈芯絨外套"></div>
         <div class="item-body">
           <span class="item-badge badge-c2c">C2C</span>
-          <div class="item-title">日系復古燈芯絨外套</div>
-          <div class="item-sub">95 成新・賣家評價 4.9</div>
+          <div class="item-title">日系撞色斜肩針織披肩短裙套裝</div>
+          <div class="item-sub">九成新，僅試穿過一次，無明顯瑕疵與起球。</div>
           <div class="item-price">NT$480 <span class="old">$1,680</span></div>
         </div>
       </div>
@@ -398,8 +410,8 @@
         <div class="item-thumb h3"><img src="/plans/images/product2.jpg" alt="單眼相機"></div>
         <div class="item-body">
           <span class="item-badge badge-official">官方認證</span>
-          <div class="item-title">經典底片單眼相機組</div>
-          <div class="item-sub">S 級・附鑑定報告</div>
+          <div class="item-title">銀色高階三鏡頭智慧型手機</div>
+          <div class="item-sub">八成新，外觀有些微使用細紋，功能完全正常。</div>
           <div class="item-price">NT$6,200</div>
         </div>
       </div>
@@ -407,8 +419,8 @@
         <div class="item-thumb h2"><img src="/plans/images/product3.jpg" alt="陶瓷手沖壺"></div>
         <div class="item-body">
           <span class="item-badge badge-c2c">C2C</span>
-          <div class="item-title">絕版北歐陶瓷手沖壺</div>
-          <div class="item-sub">僅此一件・賣家自取面交可議</div>
+          <div class="item-title">經典木紋四弦古典小提琴</div>
+          <div class="item-sub">九成五新，保養良好，琴身無刮傷且音色優美。</div>
           <div class="item-price">NT$650</div>
         </div>
       </div>
@@ -416,31 +428,22 @@
         <div class="item-thumb h4"><img src="/plans/images/product4.jpg" alt="露營帳篷"></div>
         <div class="item-body">
           <span class="item-badge badge-rent">可租借</span>
-          <div class="item-title">四人露營帳篷全套組</div>
-          <div class="item-sub">最短租期 3 天</div>
-          <div class="item-price">NT$390 <span class="old">/ 週</span></div>
+          <div class="item-title">中國風扇形梅花流蘇手機吊飾</div>
+          <div class="item-sub">全新未使用，金屬配件光澤亮麗無氧化。</div>
+          <div class="item-price">NT$390 <span >/ 週</span></div>
         </div>
       </div>
       <div class="item-card reveal">
         <div class="item-thumb h2"><img src="/plans/images/product5.jpg" alt="禮服租借"></div>
         <div class="item-body">
           <span class="item-badge badge-rent">可租借</span>
-          <div class="item-title">深色訂製款正式禮服</div>
-          <div class="item-sub">含乾洗・活動前一天送達</div>
+          <div class="item-title">復古玫瑰靜物油畫相框擺飾</div>
+          <div class="item-sub">九成新，木質邊框無碰撞痕跡，整體保存極佳。</div>
           <div class="item-price">NT$890 <span class="old">/ 場</span></div>
         </div>
       </div>
-      <div class="item-card reveal">
-        <div class="item-thumb h1"><img src="/plans/images/product1.jpg" alt="收納籃"></div>
-        <div class="item-body">
-          <span class="item-badge badge-c2c">C2C</span>
-          <div class="item-title">手工藤編收納籃兩件組</div>
-          <div class="item-sub">90 成新</div>
-          <div class="item-price">NT$320</div>
-        </div>
-      </div>
     </div>
-    <div style="text-align:center; margin-top:36px;">
+    <div class="more-btn">
       <a href="#contact" class="btn btn-ghost">查看更多好物</a>
     </div>
   </div>
