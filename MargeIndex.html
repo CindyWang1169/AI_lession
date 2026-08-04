@@ -149,12 +149,28 @@
     .item-card { break-inside: avoid; margin-bottom: 20px; background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; transition: transform .3s cubic-bezier(.2,.9,.3,1), box-shadow .3s ease, border-color .3s ease; }
     .item-card:hover { transform: translateY(-5px) scale(1.02); box-shadow: 0 22px 38px rgba(32,36,30,.18); border-color: rgba(63,99,85,.18); }
 
-    .item-thumb { width: 100%; height: 200px; display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; color: var(--jade-deep); font-size: .85rem; letter-spacing: .05em; background: linear-gradient(135deg,#E4E0D0,#D6D2BE); overflow: hidden; }
-    .item-thumb img { width: 100%; height: 100%; object-fit: cover; }
+    .item-thumb {
+      width: 100%;
+      display: grid;
+      place-items: center;
+      min-height: 220px;
+      background: linear-gradient(135deg,#E4E0D0,#D6D2BE);
+      overflow: hidden;
+    }
+    .item-thumb img {
+      max-width: 100%;
+      max-height: 280px;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+    }
     .item-thumb.h1,
     .item-thumb.h2,
     .item-thumb.h3,
-    .item-thumb.h4 { height: 200px; }
+    .item-thumb.h4 {
+      min-height: 220px;
+      height: auto;
+    }
 
     .item-body { padding: 22px; display: flex; flex-direction: column; gap: 12px; }
     .item-badge { display: inline-flex; align-items: center; justify-content: center; align-self: flex-start; font-size: .78rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; border-radius: 999px; padding: 8px 14px; border: 1px solid transparent; }
@@ -398,7 +414,7 @@
 
     <div class="item-grid">
       <div class="item-card reveal">
-        <div class="item-thumb h1"><img src="/plans/images/product1.jpg" alt="燈芯絨外套"></div>
+        <div class="item-thumb h1"><img src="/plans/images/product1-Photoroom.png" alt="日系撞色斜肩針織披肩短裙套裝"></div>
         <div class="item-body">
           <span class="item-badge badge-c2c">C2C</span>
           <div class="item-title">日系撞色斜肩針織披肩短裙套裝</div>
@@ -407,7 +423,7 @@
         </div>
       </div>
       <div class="item-card reveal">
-        <div class="item-thumb h3"><img src="/plans/images/product2.jpg" alt="單眼相機"></div>
+        <div class="item-thumb h3"><img src="/plans/images/product2-Photoroom.png" alt="銀色高階三鏡頭智慧型手機"></div>
         <div class="item-body">
           <span class="item-badge badge-official">官方認證</span>
           <div class="item-title">銀色高階三鏡頭智慧型手機</div>
@@ -416,7 +432,7 @@
         </div>
       </div>
       <div class="item-card reveal">
-        <div class="item-thumb h2"><img src="/plans/images/product3.jpg" alt="陶瓷手沖壺"></div>
+        <div class="item-thumb h2"><img src="/plans/images/product3-Photoroom.png" alt="陶瓷手沖壺"></div>
         <div class="item-body">
           <span class="item-badge badge-c2c">C2C</span>
           <div class="item-title">經典木紋四弦古典小提琴</div>
@@ -425,21 +441,21 @@
         </div>
       </div>
       <div class="item-card reveal">
-        <div class="item-thumb h4"><img src="/plans/images/product4.jpg" alt="露營帳篷"></div>
+        <div class="item-thumb h4"><img src="/plans/images/product4-Photoroom.png" alt="露營帳篷"></div>
         <div class="item-body">
           <span class="item-badge badge-rent">可租借</span>
           <div class="item-title">中國風扇形梅花流蘇手機吊飾</div>
           <div class="item-sub">全新未使用，金屬配件光澤亮麗無氧化。</div>
-          <div class="item-price">NT$390 <span >/ 週</span></div>
+          <div class="item-price">NT$390 <span >/ 天</span></div>
         </div>
       </div>
       <div class="item-card reveal">
-        <div class="item-thumb h2"><img src="/plans/images/product5.jpg" alt="禮服租借"></div>
+        <div class="item-thumb h2"><img src="/plans/images/product5-Photoroom.png" alt="禮服租借"></div>
         <div class="item-body">
           <span class="item-badge badge-rent">可租借</span>
           <div class="item-title">復古玫瑰靜物油畫相框擺飾</div>
           <div class="item-sub">九成新，木質邊框無碰撞痕跡，整體保存極佳。</div>
-          <div class="item-price">NT$890 <span class="old">/ 場</span></div>
+          <div class="item-price">NT$890 <span>/ 天</span></div>
         </div>
       </div>
     </div>
