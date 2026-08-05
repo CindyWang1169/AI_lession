@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="UTF-8">
+    <title>網頁架構與動態廣告</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        /* 頁面背景樣式 */
+        body {
+            background: #333;
+        }
+
+        /* 廣告彈窗圓角與陰影 */
+        #adsModal .modal-content {
+            border-radius: 16px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            background: transparent;
+            border: none;
+
+        }
+
+        /* Modal 內部容器與 Wave 動畫樣式 (採用 #F1EEE3 與 #FBFAF5 配色) */
+        #adsModal .modal-body-custom {
+            position: relative;
+            width: 100%;
+            padding: 20px 20px 30px 20px;
+            background-image: linear-gradient(to top, #F1EEE3 0%, #FBFAF5 100%);
+            overflow: hidden;
+            border-radius: 16px;
+        }
+
+        .wave-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+            z-index: 0;
+            border-radius: 16px;
+        }
+
+        .wave {
+            width: 500px;
+            height: 500px;
+            position: absolute;
+            top: 100%;
+            left: 80%;
+            margin-left: -400px;
+            margin-top: -400px;
+            border-radius: 38%;
+            /* background: rgba(255, 255, 255, 0.6); */
+            background: rgba(101, 79, 228, 0.75);
+            /* background: rgba(241, 238, 227, 0.8); */
+            animation: wave 12s infinite linear;
+        }
+
+        @keyframes wave {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* 確保內容層級高於動畫背景 */
+        #adsModal .modal-header,
+        #adsModal .modal-body-content {
+            position: relative;
+            z-index: 1;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header id="header">...</header>
+    <section class="hero" id="home">...</section>
+    <section class="manifesto" id="manifesto">...</section>
+    <!-- ... 中間的 section 保持不變 ... -->
+    <footer id="contact">...</footer>
+    <div class="back-top" id="backTop">↑</div>
+
+    <!-- 彈出廣告 Modal -->
+    <div class="modal fade" id="adsModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+
+                <!-- 自訂背景與 Wave 動畫區塊 -->
+                <div class="modal-body-custom">
+
+                    <!-- Wave 動畫 -->
+                    <div class="wave-container">
+                        <div class="wave"></div>
+                    </div>
+
+                    <!-- Modal 標題與關閉按鈕 -->
+                    <div class="modal-header border-0 pt-0 pb-2">
+                        <h5 class="modal-title fw-bold text-dark">精選廣告</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <!-- 廣告圖片區塊（含穩定備用圖機制） -->
+                    <div class="modal-body-content text-center">
+                        <a href="#" target="_blank">
+                            <img src="your-local-ad-image.jpg"
+                                onerror="this.onerror=null; this.src='https://placehold.co/500x300/F1EEE3/333333?text=Ad+Image';"
+                                alt="廣告圖片" class="img-fluid rounded shadow-sm">
+                        </a>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- jQuery 與 Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- 自動彈出控制碼 -->
+    <script>
+        $(document).ready(function () {
+            var myModal = new bootstrap.Modal(document.getElementById('adsModal'));
+            myModal.show();
+        });
+    </script>
+</body>
+
+</html>
